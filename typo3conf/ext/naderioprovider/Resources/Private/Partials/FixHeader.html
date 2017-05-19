@@ -1,0 +1,38 @@
+{namespace flux=FluidTYPO3\Flux\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:v="http://fedext.net/ns/vhs/ViewHelpers"
+     xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+
+    <f:section name="FixHeader">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container" style="color: #fff;padding: 15px 0px;">
+                <div class="col-md-4 col-sm-4 col-xs-6">
+                   Softtodo
+                </div>
+                <div class="col-md-4">
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <v:page.menu useShortcutUid="1" title="{item.linktext}" levels="1" excludePages="">
+                                <f:for each="{menu}" as="item" iteration="i">
+                                    <li class='<f:if condition="{item.uid}=={page.uid}">active</f:if>'>
+                                        <f:link.page pageUid="{item.uid}" title="{item.linktext}">
+                                            {item.linktext}
+                                        </f:link.page>
+                                    </li>
+                                </f:for>
+                            </v:page.menu>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-6">
+                    <f:cObject typoscriptObjectPath="lib.connect" />
+                </div>
+            </div>
+        </nav>
+        <br />
+        <br />
+    </f:section>
+
+</div>

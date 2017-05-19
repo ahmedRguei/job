@@ -1,0 +1,93 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="wizard-navigation">
+        <ul>
+            <li><div data-toggle="tab" class="margin-10">Informations</div></li>
+            <li><div data-toggle="tab" class="margin-10">Educations</div></li>
+            <li><div data-toggle="tab" class="margin-10">Experiences</div></li>
+            <li><div data-toggle="tab" class="margin-10">Skills</div></li>
+            <li class="active"><a href="#languages" data-toggle="tab">Languages</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="languages">
+            <h4 class="info-text"><i class="fa fa-globe" aria-hidden="true"></i> Your languages</h4>
+            <div class="row">
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">school</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="title">
+                                Language
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="title" id="title" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">clear_all</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="level">
+                                <f:translate key="tx_candidateresume_domain_model_skill.level" />, Certification...
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="level" id="level" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have an elementary proficiency in this language.">
+                            <input type="radio" name="type" value="ELEMENTARY">
+                            <div class="icon">
+                                <i class="material-icons">import_contacts</i>
+                            </div>
+                            <h6>Elementary proficiency</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a limited working proficiency in this language.">
+                            <input type="radio" name="type" value="LIMITED_WORKING">
+                            <div class="icon">
+                                <i class="material-icons">flight_takeoff</i>
+                            </div>
+                            <h6>Limited working proficiency</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a professional working proficiency in this language.">
+                            <input type="radio" name="type" value="PROFESSIONAL_WORKING">
+                            <div class="icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <h6>Professional working proficiency</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if this language is your native or bilingual.">
+                            <input type="radio" name="type" value="NATIVE_OR_BILINGUAL">
+                            <div class="icon">
+                                <i class="material-icons">language</i>
+                            </div>
+                            <h6>Native or bilingual proficiency</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer">
+        <div class="pull-right">
+            <input type="button" class="btn  btn-fill btn-primary btn-wd" onclick="$('#newLanguage').submit();" value="Save & create new one" />
+        </div>
+        <div class="pull-left">
+            <f:link.action action="new" controller="Skill" arguments="{candidate : candidate}" class="btn btn-default" title="Go to add skills">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </f:link.action>
+            <f:link.action action="show" controller="Candidate" arguments="{candidate : candidate}" class="btn btn-default">Done !</f:link.action>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</html>

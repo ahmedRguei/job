@@ -1,0 +1,190 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="wizard-navigation">
+        <ul>
+            <li class="active"><a href="#information" data-toggle="tab">Information</a></li>
+            <li><div data-toggle="tab" class="margin-10">Educations</div></li>
+            <li><div data-toggle="tab" class="margin-10">Experiences</div></li>
+            <li><div data-toggle="tab" class="margin-10">Skills</div></li>
+            <li><div data-toggle="tab" class="margin-10">Languages</div></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="information">
+            <div class="row">
+                <h4 class="info-text">Let's start with the basic information</h4>
+                <div class="col-sm-12">
+                    <!-- choose picture -->
+                    <div class="col-sm-4">
+                        <div class="picture-container">
+                            <div class="picture">
+                                <img src="typo3conf/ext/candidateresume/Resources/Public/Images/person.png" class="picture-src" id="wizardPicturePreview" title=""/>
+                            </div>
+                        </div>
+                    </div><!-- /choose picture -->
+                    <!-- first name -->
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="material-icons">face</i></span>
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label" for="firstName">
+                                    <f:translate key="tx_candidateresume_domain_model_candidate.first_name"/>
+                                </label>
+                                <f:form.textfield property="firstName" id="firstName" class="form-control"/>
+                            </div>
+                        </div>
+                    </div><!-- /first name -->
+                    <!-- last name -->
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="material-icons">record_voice_over</i></span>
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label" for="lastName">
+                                    <f:translate key="tx_candidateresume_domain_model_candidate.last_name"/>
+                                </label>
+                                <f:form.textfield property="lastName" id="lastname" class="form-control"/>
+                            </div>
+                        </div>
+                    </div><!-- /last name -->
+                    <!-- professional title -->
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="material-icons">work</i></span>
+                            <div class="form-group label-floating is-empty">
+                                <label class="control-label" for="professionalTitle">
+                                    <f:translate key="tx_candidateresume_domain_model_candidate.professional_title"/>
+                                </label>
+                                <f:form.textfield property="professionalTitle" id="professionalTitle" class="form-control"/>
+                            </div>
+                        </div>
+                    </div><!-- /professional title -->
+                    <!-- availibailty -->
+                    <div class="col-sm-4">
+                        <div class="col-sm-4 col-xs-4">
+                            <div data-toggle="wizard-radio" rel="tooltip"
+                                 data-original-title="Select this option if the candidate is available." style="margin-top: 0px;"
+                                <f:if condition="{candidate.availability} == 'yes'">
+                                    <f:then>class='choice active'</f:then>
+                                    <f:else>
+                                        <f:if condition="{candidate.availability} == 'no'">
+                                            <f:then>class='choice'</f:then>
+                                            <f:else>class='choice active'</f:else>
+                                        </f:if>
+                                    </f:else>
+                                </f:if>
+                            >
+                                <f:form.radio property="availability" value="yes" <f:if condition="{candidate.availability} == ''"><f:then>checked='checked'</f:then></f:if> />
+                                <div class="icon" style="width: 60px;height: 60px;">
+                                    <i class="material-icons" style="font-size: 32px;line-height: 55px;">check</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-4">
+                            <h6 class="text-center" style="margin-top: 20px;">Availability</h6>
+                        </div>
+                        <div class="col-sm-4 col-xs-4">
+                            <div data-toggle="wizard-radio" rel="tooltip"
+                                 data-original-title="Select this option if the candidate is not available." style="margin-top: 0px;"
+                                <f:if condition="{candidate.availability} == 'no'"><f:then>class='choice active'</f:then><f:else>class='choice'</f:else></f:if>>
+                                <f:form.radio property="availability" value="no" />
+                                <div class="icon" style="width: 60px;height: 60px;">
+                                    <i class="material-icons" style="font-size: 32px;line-height: 55px;">close</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /availibailty -->
+                </div>
+                <!-- address -->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">add_location</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="addresss">
+                                <f:translate key="tx_candidateresume_domain_model_candidate.address"/>
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="address" id="addresss" class="form-control"/>
+                        </div>
+                    </div>
+                </div><!-- /address -->
+                <!-- city -->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">location_city</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="city">
+                                <f:translate key="tx_candidateresume_domain_model_candidate.city"/>
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="city" id="city" class="form-control"/>
+                        </div>
+                    </div>
+                </div><!-- /city -->
+                <!-- Linked in account -->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="linkedin">
+                                <f:translate key="tx_candidateresume_domain_model_candidate.linkedin"/>
+                            </label>
+                            <f:form.textfield property="linkedin" id="linkedin" class="form-control"/>
+                        </div>
+                    </div>
+                </div><!-- /Linked in account -->
+                <!-- resume file upload -->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">attach_file</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="">
+                                <f:translate key="tx_candidateresume_domain_model_candidate.resmue"/>
+                            </label>
+                        </div>
+                    </div>
+                </div><!-- /resume file upload -->
+                <!-- phone number -->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">phone</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="phone">
+                                <f:translate key="tx_candidateresume_domain_model_candidate.phone"/>
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="phone" id="phone" class="form-control"/>
+                        </div>
+                    </div>
+                </div><!-- /phone number -->
+                <!-- email address -->
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">email</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="email">
+                                <f:translate key="tx_candidateresume_domain_model_candidate.email"/>
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="email" id="email" class="form-control"/>
+                        </div>
+                    </div>
+                </div><!-- /email address -->
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer">
+        <div class="pull-right">
+            <button type="button" class="btn  btn-fill btn-primary btn-wd" onclick="$('#{name}').submit();">
+                <i class="fa fa-check"></i>  Save & go to educations
+            </button>
+        </div>
+        <div class="pull-left">
+            <f:link.action action="new" controller="Education" arguments="{candidate : candidate}" class="btn btn-default" title="Go to add Education">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </f:link.action>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</html>
+
+
+

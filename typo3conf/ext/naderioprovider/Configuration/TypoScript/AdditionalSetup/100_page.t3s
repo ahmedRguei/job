@@ -1,0 +1,9 @@
+page = PAGE
+page {
+    shortcutIcon = fileadmin/templates/images/favicon.ico
+    meta{
+        X-UA-Compatible = IE=edge
+        X-UA-Compatible.httpEquivalent = 1
+        viewport = width=device-width, initial-scale=1
+    }
+}

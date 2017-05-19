@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+  <!-- map, candidate's address -->
+  <div id="map" data-longitude="{candidate.longitude}" data-latittude="{candidate.latittude}"></div>
+  <!-- /map, candidate's address -->
+  <!-- details, candidate's information -->
+  <div class="container" id="main-content-container">
+    <div class="row padd-tb job-detail" >
+      <div class="col-md-9 col-sm-8">
+        <div id="content-area">
+          <!-- buttons, add and list -->
+          <div id="loadMore">
+            <f:link.action action="list" class="load-more">
+              <i class="fa fa-users"></i> List
+            </f:link.action>
+            <f:link.action action="new" class="load-more">
+              <i class="fa fa-user"></i> Add
+            </f:link.action>
+            <f:link.action action="edit" arguments="{candidate: candidate}" class="load-more ">
+              <i class="fa fa-edit"></i> Edit
+            </f:link.action>
+          </div><!-- /buttons, add and list -->
+          <div class="box">
+            <!-- candidate personnel infos -->
+            <f:render partial="Candidate/Properties" arguments="{candidate:candidate}" />
+            <!-- /candidate personnel infos -->
+          </div>
+          <!-- candidate personnel skills experiences langueges ... -->
+          <f:render partial="Candidate/Details" arguments="{candidate: candidate, educations:educations, experiences:experiences, skills:skills, languages:languages, resumefile:resumefile}" />
+          <!-- /candidate personnel skills experiences langueges ... -->
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-4">
+        <aside>
+          <!-- Similar candidates -->
+          <div class="sidebar">
+            <h2 class="text-center">Similar candidates</h2>
+            <div class="related-people">
+              <ul>
+                <f:render partial="Candidate/DisplaySimilarCadidate" arguments="{similarCandidates:similarCandidates}" />
+              </ul>
+            </div>
+          </div><!-- /Similar candidates -->
+        </aside>
+      </div>
+    </div>
+  </div><!-- /details, candidate's information -->
+</f:section>
+</html>

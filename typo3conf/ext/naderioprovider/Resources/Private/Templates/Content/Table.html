@@ -1,0 +1,57 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="table" label="#31 Table" description="the table of content" options="{group: 'FCE'}">
+            <flux:field.input required="1" name="firsttitle" label="First table column title"/>
+            <flux:field.inline.fal name="images" label="{f:translate(id: 'flux.fce.image')}" multiple="TRUE" minItems="1" maxItems="20" requestUpdate="true" />
+            <flux:field.input required="1" name="a" label="Value of A"/>
+            <flux:field.input required="1" name="b" label="Value of B"/>
+            <flux:field.input required="1" name="c" label="Value of C"/>
+            <flux:field.input required="1" name="d" label="Value of D"/>
+            <flux:form.sheet name="werte" label="werte">
+                <flux:form.section name="product" label="product">
+                    <flux:form.object name="products" label="{f:translate(id: 'flux.fce.quote')}">
+                        <flux:field.input name="columntitle" label="Column Header Title"/>
+                        <v:iterator.loop iteration="j" count="{images}" minimum="{images}" maximum="{images}">
+                            <v:iterator.loop iteration="i" count="4" minimum="4" maximum="4">
+                                <flux:field.input name="test{j.index}{i.index}" label="Value |{j.index}|{i.index}|"/>
+                            </v:iterator.loop>
+                        </v:iterator.loop>
+                    </flux:form.object>
+                </flux:form.section>
+            </flux:form.sheet>
+        </flux:form>
+    </f:section>
+    <f:section name="Preview">
+        <b>Table preview</b>
+    </f:section>
+
+    <f:section name="Main">
+        <div class="divTable">
+            <f:if condition="{settings.product}">
+                <f:for each="{settings.product}" as="pdct">
+                    <f:render section="itemProduct" arguments="{_all}" />
+                </f:for>
+            </f:if>
+
+            <table class="table-sm-no-margin-right table-float-left">
+                <tbody>
+                <tr>
+                    <th class="table-td-height th-borders text-center table-sm-padding-left table-sm-padding-right" colspan="2">{firsttitle}</th>
+                </tr>
+                <f:if condition="{v:content.resources.fal(field: 'images')}">
+                    <f:for each="{v:content.resources.fal(field: 'images')}" as="img" iteration="iterator">
+                        <tr>
+                            <f:render section="imagePosition" arguments="{_all}" />
+                        </tr>
+                    </f:for>
+                </f:if>
+                </tbody>
+            </table>
+        </div>
+    </f:section>
+</div>

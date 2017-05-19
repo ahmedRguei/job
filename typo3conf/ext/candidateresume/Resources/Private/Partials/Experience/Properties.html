@@ -1,0 +1,52 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<table class="tx-candidateresume" >
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_experience.title" />
+		</td>
+		<td>
+		{experience.title}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_experience.company" />
+		</td>
+		<td>
+		{experience.company}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_experience.start_date" />
+		</td>
+		<td>
+		{experience.startDate -> f:format.date()}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_experience.end_date" />
+		</td>
+		<td>
+		{experience.endDate -> f:format.date()}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_experience.description" />
+		</td>
+		<td>
+		{experience.description}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_experience.address" />
+		</td>
+		<td>
+		{experience.address}
+		</td>
+	</tr>
+</table>
+</html>

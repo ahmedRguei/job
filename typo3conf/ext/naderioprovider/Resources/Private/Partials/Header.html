@@ -1,0 +1,54 @@
+{namespace flux=FluidTYPO3\Flux\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <f:section name="Header">
+        <header id="header">
+            <div class="container">
+                <div class="navigation-col">
+                    <nav class="navbar navbar-inverse">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <strong class="logo">
+                                <a href="#">
+                                    <img src="typo3conf/ext/naderioprovider/Resources/Public/Images/logo.png" alt="logo">
+                                </a>
+                            </strong>
+                        </div>
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav" id="nav">
+                                <v:page.menu useShortcutUid="1" title="{item.linktext}" levels="1" excludePages="">
+                                    <f:for each="{menu}" as="item" iteration="i">
+                                        <li>
+                                            <f:if condition="{item.uid}=={page.uid}">
+                                                <f:then>
+                                                    <f:link.page pageUid="{item.uid}" title="{item.linktext}" class="active" >
+                                                        {item.linktext}
+                                                    </f:link.page>
+                                                </f:then>
+                                                <f:else>
+                                                    <f:link.page pageUid="{item.uid}" title="{item.linktext}"  >
+                                                        {item.linktext}
+                                                    </f:link.page>
+                                                </f:else>
+                                            </f:if>
+                                        </li>
+                                    </f:for>
+                                </v:page.menu>
+                                <li>
+                                    <f:cObject typoscriptObjectPath="lib.connect" />
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </f:section>
+</div>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" date="2017-04-20T18:53:00Z"
+          product-name="krausesystems">
+        <header/>
+        <body>
+            <trans-unit id="flux.standard">
+                <source>Example de site</source>
+            </trans-unit>
+
+            <trans-unit id="flux.standard.description">
+                <source>Description can be entered in LLL file locallang.xlf of extension test</source>
+            </trans-unit>
+
+            <trans-unit id="flux.example">
+                <source>Example element</source>
+            </trans-unit>
+            <trans-unit id="flux.example.description">
+                <source>Small example element</source>
+            </trans-unit>
+            <trans-unit id="flux.example.fields.settings.helloWorldHeader">
+                <source>Title input</source>j
+            </trans-unit>
+            <trans-unit id="flux.example.fields.settings.helloWorld">
+                <source>Content input</source>
+            </trans-unit>
+
+            <trans-unit id="flux.jumbotron">
+                <source>Jumbotron</source>
+            </trans-unit>
+            <trans-unit id="flux.jumbotron.description">
+                <source>Bootstrap jumbotron</source>
+            </trans-unit>
+            <trans-unit id="flux.jumbotron.fields.jumbo">
+                <source>Title jumbotron</source>
+            </trans-unit>
+            <trans-unit id="flux.jumbotron.fields.text">
+                <source>Text jumbotron</source>
+            </trans-unit>
+            <trans-unit id="flux.jumbotron.fields.btnText">
+                <source>Button Text jumbotron</source>
+            </trans-unit>
+            <trans-unit id="flux.jumbotron.fields.btnLink">
+                <source>Button Link jumbotron (Format: html://www.blah.com)</source>
+            </trans-unit>
+
+            <trans-unit id="flux.fce.slogan">
+                <source>Slogan</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.slogan-description">
+                <source>Representation of a slogan in quotation marks.</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headline">
+                <source>Headline</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headlinecolor">
+                <source>Headline color</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headlinetype">
+                <source>Type of heading</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.subtitle">
+                <source>Subtitle</source>
+            </trans-unit>
+
+
+            <trans-unit id="flux.fce.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.image-carousel">
+                <source>Picture carousel</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.image-carousel-description">
+                <source>A simple picture carousel</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.general-settings">
+                <source>General Settings</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.visibled">
+                <source>Number of items that should be visible in the desktop view</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.visiblet">
+                <source>Number of items that should be visible in the tablet view</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.visiblem">
+                <source>Number of items that should be visible in the mobile view</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.marginbetween">
+                <source>Distance between the elements</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.autoplay">
+                <source>Play automatically</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.speed">
+                <source>Speed</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.loop">
+                <source>Play in "Loop"</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.rewind">
+                <source>Rewind</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.lazyload">
+                <source>Reload images after loading if necessary?</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.navigation">
+                <source>Show navigation?</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.rewind">
+                <source>Rewind</source>
+            </trans-unit>
+
+            <trans-unit id="flux.fce.quote">
+                <source>Quote</source>
+            </trans-unit>
+
+
+
+            <trans-unit id="flux.sliderbootstrap.label">
+                <source>Responsive Slider: élément</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.description">
+                <source>Vous pouvez upload des images</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headline">
+             <source>Headline</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.transition">
+                <source>Transition effect</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.firsttext">
+                <source>Title text slide</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.secondtext">
+                <source>Content text slide</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.speed">
+                <source>Vitesse du Slide</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.visibled">
+                <source>Number of items that should be visible in the desktop view</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.container">
+                <source>The slider with matgin left and right</source>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

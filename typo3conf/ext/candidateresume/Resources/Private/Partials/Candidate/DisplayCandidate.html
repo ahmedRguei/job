@@ -1,0 +1,88 @@
+{namespace flux=FluidTYPO3\Flux\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:v="http://fedext.net/ns/vhs/ViewHelpers"
+     xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+    <f:section name="DisplayCandidate">
+        <!-- dispaly one candidate -->
+        <li style="display: list-item;">
+            <div class="box">
+                <div class="col-md-7 no-padding-right-left">
+                    <div class="col-md-1 col-sm-2 col-xs-12 no-padding-right-left text-center">
+                        <img src="typo3conf/ext/candidateresume/Resources/Public/Images/person.png" style="width: 45px;" alt="img" />
+                    </div>
+                    <div class="col-md-11 col-sm-10 col-xs-12 center-mobile">
+                        <h4 class="col-md-6 col-sm-6">
+                            <f:link.action action="show" arguments="{candidate : candidate}">
+                                <f:format.case mode="capital">{candidate.firstName}</f:format.case>
+                                <f:format.case mode="capital">{candidate.lastName}</f:format.case>
+                            </f:link.action>
+                        </h4>
+                        <h4 class="col-md-6 col-sm-6 ">
+                            <f:format.case mode="capital">{candidate.professionalTitle}</f:format.case>
+                        </h4>
+                        <p>
+                            <i class="fa fa-envelope-o color-pink"></i> {candidate.email}
+                            <i class="fa fa-phone color-pink"></i> {candidate.phone}
+                        </p>
+                        <i class="fa fa-map-marker color-pink"></i>
+                        <i>{candidate.address}, {candidate.city}</i>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12 col-xs-12 btns-candidate no-padding-right-left text-center">
+                    <!-- Button edit : update candidate -->
+                    <f:link.action action="edit" controller="Candidate" arguments="{candidate : candidate}" title="Edit this candidate">
+                        <i class="fa fa-edit" style="position: absolute;right: 20px;top: 1px;"></i>
+                    </f:link.action><!-- /Button edit : update candidate -->
+                    <!-- Button delete : remove candidate -->
+                    <f:link.action action="delete" controller="Candidate" arguments="{candidate : candidate}" title="Delete this candidate">
+                        <i class="fa fa-close" style="position: absolute;right: 0;top: 0;"></i>
+                    </f:link.action><!-- /Button delete : remove candidate -->
+                    <!-- Button edit education : update candidate's education -->
+                    <f:link.action action="new" controller="Education" arguments="{candidate : candidate}" class="btn btn-primary btn-sm btn-option-candidate">
+                        <i class="fa fa-book"></i> Education ( <f:count subject="{candidate.educations}" /> )
+                    </f:link.action><!-- /Button edit education : update candidate's education -->
+                    <!-- Button edit experience : update candidate's experience -->
+                    <f:link.action action="new" controller="Experience" arguments="{candidate : candidate}" class="btn btn-default btn-sm btn-option-candidate">
+                        <i class="fa fa-plus "></i> Experiences ( <f:count subject="{candidate.experiences}" /> )
+                    </f:link.action><!-- /Button edit experience : update candidate's experience -->
+                    <!-- Display acquired skills : accordian style -->
+                    <a class="btn btn-default btn-sm btn-option-candidate" data-toggle="collapse" data-target="#skills{candidate.uid}">
+                        <f:for each="{candidate.acquiredSkills -> v:iterator.explode(glue: ',')}" as="lang" iteration="i">
+                            <f:if condition="{i.isLast}"><i class="fa fa-language "></i> Skills ( {i.total} )</f:if>
+                        </f:for>
+                    </a>
+                    <div id="skills{candidate.uid}" class="collapse col-sm-12">
+                        <i class="fa fa-globe "></i> <i class="color-pink">Acquired Skills</i> <br /> <br />
+                        <i style="font-size: 15px;">
+                            <f:for each="{candidate.acquiredSkills -> v:iterator.explode(glue: ',')}" as="skill" iteration="i">
+                                <f:if condition="{i.isLast}">
+                                    <f:then>{skill}</f:then>
+                                    <f:else>{skill}, </f:else>
+                                </f:if>
+                            </f:for>
+                        </i>
+                    </div><!-- Display acquired skills : accordian style -->
+                    <!-- Display spoken languges : accordian style -->
+                    <a class="btn btn-primary btn-sm btn-option-candidate" data-toggle="collapse" data-target="#spoken{candidate.uid}">
+                        <f:for each="{candidate.spokenLanguage -> v:iterator.explode(glue: ',')}" as="lang" iteration="i">
+                            <f:if condition="{i.isLast}"><i class="fa fa-language "></i> Languages ( {i.total} )</f:if>
+                        </f:for>
+                    </a>
+                    <div id="spoken{candidate.uid}" class="collapse col-sm-12">
+                        <i class="fa fa-globe "></i> <i class="color-pink">Spoken languages</i> <br /> <br />
+                        <i style="font-size: 15px;">
+                            <f:for each="{candidate.spokenLanguage -> v:iterator.explode(glue: ',')}" as="lang" iteration="i">
+
+                                <f:if condition="{i.isLast}">
+                                    <f:then>{lang}</f:then>
+                                    <f:else>{lang}, </f:else>
+                                </f:if>
+                            </f:for>
+                        </i>
+                    </div><!-- Display spoken languges : accordian style -->
+                </div>
+            </div>
+        </li><!-- /dispaly one candidate -->
+    </f:section>
+</div>

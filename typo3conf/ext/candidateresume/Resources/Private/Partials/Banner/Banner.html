@@ -1,0 +1,40 @@
+{namespace flux=FluidTYPO3\Flux\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<div xmlns:f="http://typo3.org/ns/fluid/ViewHelpers" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <f:section name="Banner">
+        <div class="banner-outer">
+            <div id="banner" class="element kenburnsy fullscreen">
+                <div class="slide velocity-animating"
+                     style="background-image: url(&quot;typo3conf/ext/candidateresume/Resources/Public/Images/banner.png&quot;);
+                     transform: rotateZ(2.98895deg) scale(1.09963) translateZ(0px); opacity: 1;">
+                </div>
+            </div>
+            <div class="caption">
+                <div class="holder">
+                    <h1>{title}</h1>
+                    <f:if condition="{form} == 1">
+                        <f:form action="search" controller="Candidate" id="search" name="search" >
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3">
+                                        <f:form.textfield property="name" placeholder="Name" />
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <f:form.textfield property="skills" placeholder="Enter Job Title or Skills" />
+                                    </div>
+                                    <div class="col-md-4 col-sm-4">
+                                        <f:form.textfield property="location" placeholder="Enter City or Address" />
+                                    </div>
+                                    <div class="col-md-1 col-sm-1">
+                                        <f:form.button type="submit"><i class="fa fa-search"></i></f:form.button>
+                                    </div>
+                                </div>
+                            </div>
+                        </f:form>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+    </f:section>
+</div>

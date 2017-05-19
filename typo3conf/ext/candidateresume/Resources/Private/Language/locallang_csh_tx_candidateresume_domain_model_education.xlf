@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-05-04T12:46:32Z" product-name="candidateresume">
+		<header/>
+		<body>
+			<trans-unit id="tx_candidateresume_domain_model_candidateresume">
+				<source>Candidate Resume</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidateresume.description">
+				<source>Candidate, resume and interview management</source>
+			</trans-unit>
+			<trans-unit id="school.description">
+				<source>School name</source>
+			</trans-unit>
+			<trans-unit id="degree.description">
+				<source>Degree</source>
+			</trans-unit>
+			<trans-unit id="field_study.description">
+				<source>Field of study</source>
+			</trans-unit>
+			<trans-unit id="from_date.description">
+				<source>From year</source>
+			</trans-unit>
+			<trans-unit id="to_date.description">
+				<source>To year</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

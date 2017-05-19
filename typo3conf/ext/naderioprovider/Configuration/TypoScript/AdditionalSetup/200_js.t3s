@@ -1,0 +1,14 @@
+page.includeJS{
+    js1 = typo3conf/ext/naderioprovider/Resources/Public/Js/jquery.min.js
+    js2 = typo3conf/ext/naderioprovider/Resources/Public/Js/bootstrap.min.js
+    js3 = typo3conf/ext/naderioprovider/Resources/Public/Js/jquery.bootstrap.js
+    js5 = typo3conf/ext/naderioprovider/Resources/Public/Js/material-bootstrap-wizard.js
+    js6 = typo3conf/ext/naderioprovider/Resources/Public/Js/jquery.validate.min.js
+    js7 = typo3conf/ext/naderioprovider/Resources/Public/Js/map.js
+    js9 = typo3conf/ext/naderioprovider/Resources/Public/Js/bootstrap-notify.js
+    js11 = typo3conf/ext/naderioprovider/Resources/Public/Js/scripts.js
+    js12 = typo3conf/ext/naderioprovider/Resources/Public/Js/inputTags.jquery.js
+}
+page.includeJSFooter{
+    js8 = https://maps.googleapis.com/maps/api/js?key=AIzaSyAlJ0N7UHEGQikAZDucUnnAHcOhUkhyJrU&callback=initMap
+}

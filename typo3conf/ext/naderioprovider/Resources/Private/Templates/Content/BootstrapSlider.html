@@ -1,0 +1,98 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+    <f:section name="Configuration">
+        <flux:form id="sliderbootstrap" label="{f:translate(id: 'flux.sliderbootstrap.label')}" description="{f:translate(id: 'flux.sliderbootstrap.description')}"
+                   options="{group: 'FCE-Bootstrap', icon: 'EXT:naderioprovider/Resources/Public/Icons/Page/bootstrap.png'}">
+
+            <flux:form.sheet name="options" label="{f:translate(id: 'flux.fce.general-settings')}">
+                <flux:field.input name="heading" label="{f:translate(id: 'flux.fce.headline')}"/>
+                <flux:field.select name="items" label="{f:translate(id: 'flux.sliderbootstrap.visibled')}" items="1,2,3,4,5,6,7,8,9,10,11,12" default="3" size="1" maxItems="1"/>
+                <flux:field.input name="speed" label="{f:translate(id: 'flux.sliderbootstrap.speed')}" default="2000"/>
+                <flux:field.select name="transition" label="{f:translate(id: 'flux.sliderbootstrap.transition')}" items="{slide : 'Slide',carousel-fade: 'Fade'}" default="slide" size="1" maxItems="1"/>
+                <flux:field.select name="container" label="{f:translate(id: 'flux.sliderbootstrap.container')}" items="{container : 'Yes',container-fluid: 'No'}" default="container" size="1" maxItems="1"/>
+            </flux:form.sheet>
+
+            <flux:form.sheet name="elements" label="Elements">
+                <flux:field.input name="names" label="{f:translate(id: 'flux.fce.imagename')}"/>
+                <flux:field.inline.fal name="images" label="{f:translate(id: 'flux.fce.image')}" allowedExtensions="jpg,jpeg,png" multiple="TRUE" maxItems="20" />
+
+            </flux:form.sheet>
+        </flux:form>
+    </f:section>
+    <f:section name="Preview">
+        <b>Slider Bootstrap </b>
+        <f:if condition="{heading}">
+            <h4>{heading}</h4>
+        </f:if>
+        <f:if condition="{v:content.resources.fal(field: 'images')}">
+            <p>Elements: {images}</p>
+            <div id="myCarousel2" class="carousel {transition} " data-ride="carousel" data-interval="{speed}">
+                <div class="carousel-inner" role="listbox">
+                    <f:for each="{v:content.resources.fal(field: 'images')}" as="image" iteration="j">
+                        <div class='item  <f:if condition="{j.index}==0">active</f:if>'>
+                            <v:media.image  src="{image.id}" crop="{image.crop}" class="width100" alt="{image.title}" />
+                            <f:if condition="{image.title}">
+                                <div class="carousel-caption">
+                                    <h3>{image.title}</h3>
+                                    <p>{names}</p>
+                                </div>
+                            </f:if>
+                        </div>
+                    </f:for>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </f:if>
+    </f:section>
+
+    <f:section name="ItemDefault">
+        <f:if condition="{items} > {i.index}">
+            <f:then>
+                <div class='item <f:if condition="{i.index}==0">active</f:if>'>
+                    <f:image src="{image.id}" crop="{image.crop}" class="width100" alt="{image.title}" title="{f:if(condition: image.description, then: '{image.title}: ', else: '{image.title}')}{image.description}"/>
+                    <f:if condition="{image.title}">
+                        <div class="carousel-caption">
+                            <h3>{image.title}</h3>
+                            <p>{image.description}</p>
+                        </div>
+                    </f:if>
+                </div>
+            </f:then>
+        </f:if>
+    </f:section>
+
+    <f:section name="Main">
+        <div class="{container}">
+            <div id="myCarousel" class="carousel {transition}" data-ride="carousel" data-interval="{speed}">
+                <f:if condition="{v:content.resources.fal(field: 'images')}">
+                    <div class="carousel-inner" role="listbox">
+                        <f:for each="{v:content.resources.fal(field: 'images')}" as="image" iteration="i">
+                            <f:render section="ItemDefault" arguments="{_all}" />
+                        </f:for>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </f:if>
+            </div>
+        </div>
+    </f:section>
+</div>

@@ -1,0 +1,86 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <div class="wizard-navigation">
+        <ul>
+            <li><div data-toggle="tab" class="margin-10">Informations</div></li>
+            <li><div data-toggle="tab" class="margin-10">Educations</div></li>
+            <li><div data-toggle="tab" class="margin-10">Experiences</div></li>
+            <li class="active"><a href="#skills" data-toggle="tab">Skills</a></li>
+            <li><div data-toggle="tab" class="margin-10">Languages</div></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="skills">
+            <h4 class="info-text"><i class="fa fa-code" aria-hidden="true"></i> Your skills </h4>
+            <div class="row">
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">school</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="title">
+                                <f:translate key="tx_candidateresume_domain_model_skill.title" />
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="title" id="title" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="material-icons">clear_all</i></span>
+                        <div class="form-group label-floating is-empty">
+                            <label class="control-label" for="level">
+                                Skill's description
+                                <span class="required">(required)</span>
+                            </label>
+                            <f:form.textfield property="level" id="level" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="col-sm-4">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you have a common knowledge or an understanding of basic techniques and concepts.">
+                            <input type="radio" name="type" value="Basic_Knowledge">
+                            <div class="icon">
+                                <i class="material-icons">import_contacts</i>
+                            </div>
+                            <h6>Basic Knowledge</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you are able to successfully complete tasks in this competency as requested. ">
+                            <input type="radio" name="type" value="Intermediate">
+                            <div class="icon">
+                                <i class="material-icons">flight_takeoff</i>
+                            </div>
+                            <h6>Intermediate</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you can perform the actions associated with this skill without assistance.">
+                            <input type="radio" name="type" value="Advanced">
+                            <div class="icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <h6>Advanced</h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer">
+        <div class="pull-right">
+            <input type="button" class="btn  btn-fill btn-primary btn-wd" onclick="$('#newSkill').submit();" value="Save" />
+        </div>
+        <div class="pull-left">
+            <f:link.action action="new" controller="Experience" arguments="{candidate : candidate}" class="btn btn-default" title="Go to experiences">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            </f:link.action>
+            <f:link.action action="new" controller="Language" arguments="{candidate : candidate}" class="btn btn-default" title="Go to Language">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            </f:link.action>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</html>

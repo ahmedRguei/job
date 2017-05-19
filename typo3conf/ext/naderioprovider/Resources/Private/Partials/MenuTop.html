@@ -1,0 +1,53 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+    <f:section name="MenuTop">
+        <nav>
+            <ul class="nav nav-justified">
+                <v:page.menu useShortcutUid="1" title="{item.linktext}" levels="1" excludePages="">
+                    <f:for each="{menu}" as="item" iteration="i">
+                        <li class='<f:if condition="{item.uid}=={page.uid}">active</f:if>'>
+                            <f:link.page pageUid="{item.uid}" title="{item.linktext}">
+                                {item.linktext}
+                            </f:link.page>
+                        </li>
+                    </f:for>
+                </v:page.menu>
+            </ul>
+        </nav>
+        <!-- Get current language id, e.g. 0, 1 -->
+        <!-- In my case 0 = German, 1 = English -->
+        <f:if condition="{v:page.language(normalWhenNoLanguage: 1)} == 1">
+            <f:then>
+                <!-- If current language id is 1 e.g. English, -->
+                <!-- create link to current page and -->
+                <!-- add &L=0 GET Param to switch to german language -->
+                <v:link.typolink configuration="{parameter: page.uid, additionalParams: '&L=0'}">Deutsch</v:link.typolink>
+            </f:then>
+            <f:else>
+                <v:link.typolink configuration="{parameter: page.uid, additionalParams: '&L=1'}">English</v:link.typolink>
+            </f:else>
+        </f:if>
+
+
+        <v:page.languageMenu
+                defaultLanguageLabel="EN"
+                hideNotTranslated="{true}" >
+            <ul class="nav language pull-right">
+                <f:for each="{languageMenu}" as="langmenu" iteration="langiter">
+                    <f:if condition="{langiter.isLast}">
+                        <f:then>
+                            <li><a href="{langmenu.url}">{langmenu.label}</a></li>
+                        </f:then>
+                        <f:else>
+                            <li><a href="{langmenu.url}">{langmenu.label}</a></li>
+                            <li class="topbar-devider">|</li>
+                        </f:else>
+                    </f:if>
+                </f:for>
+            </ul>
+        </v:page.languageMenu>
+    </f:section>
+</div>

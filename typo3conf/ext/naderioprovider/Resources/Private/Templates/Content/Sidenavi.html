@@ -1,0 +1,58 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+        <flux:form id="sidenavi" options="{group: 'FCE', icon: '/provider/typo3/sysext/core/Resources/Public/Icons/T3Icons/content/content-elements-login.svg'}">
+            <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:flexform tag -->
+            <flux:field.input name="startpage" required="true">
+                <flux:wizard.link activeTab="'page'" />
+            </flux:field.input>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <!-- If you wish, place custom backend preview content here -->
+        <strong>Menüstartpunkt:</strong><br />
+        {startpage}
+    </f:section>
+
+    <f:section name="Main">
+        <f:render section="MenuRecursionStart" />
+    </f:section>
+
+    <f:section name="MenuRecursionStep">
+        <f:if condition="{currentPage.hasSubPages}">
+            <v:page.menu pageUid="{currentPage.uid}">
+                <f:if condition="{menu}">
+                    <ul>
+                        <f:for each="{menu}" as="currentSubPage">
+                            <li class="{currentSubPage.class}">
+                                <v:page.link pageUid="{currentSubPage.uid}" />
+                                <f:render section="MenuRecursionStep" arguments="{currentPage: '{currentSubPage}'}" />
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:if>
+            </v:page.menu>
+        </f:if>
+    </f:section>
+
+    <f:section name="MenuRecursionStart">
+        <v:page.menu pageUid="{startpage}">
+            <f:if condition="{menu}">
+                <ul>
+                    <f:for each="{menu}" as="startLevelPage">
+                        <li class="{startLevelPage.class}"><v:page.link pageUid="{startLevelPage.uid}" />
+                            <f:render section="MenuRecursionStep" arguments="{currentPage: '{startLevelPage}'}"/>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+        </v:page.menu>
+    </f:section>
+
+</div>

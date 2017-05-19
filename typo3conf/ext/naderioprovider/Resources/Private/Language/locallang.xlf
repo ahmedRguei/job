@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="naderioprovider" date="2017-04-20T14:07:58+02:00">
+		<header/>
+		<body>
+			<trans-unit id="flux.standard">
+				<source>Example site</source>
+			</trans-unit>
+
+			<trans-unit id="flux.standard.description">
+				<source>Description can be entered in LLL file locallang.xlf of extension test</source>
+			</trans-unit>
+
+			<trans-unit id="flux.example">
+				<source>Example element</source>
+			</trans-unit>
+			<trans-unit id="flux.example.description">
+				<source>Small example element</source>
+			</trans-unit>
+			<trans-unit id="flux.example.fields.settings.helloWorldHeader">
+				<source>Title input</source>j
+			</trans-unit>
+			<trans-unit id="flux.example.fields.settings.helloWorld">
+				<source>Content input</source>
+			</trans-unit>
+
+			<trans-unit id="flux.jumbotron">
+				<source>Jumbotron</source>
+			</trans-unit>
+			<trans-unit id="flux.jumbotron.description">
+				<source>Bootstrap jumbotron</source>
+			</trans-unit>
+			<trans-unit id="flux.jumbotron.fields.jumbo">
+				<source>Title jumbotron</source>
+			</trans-unit>
+			<trans-unit id="flux.jumbotron.fields.text">
+				<source>Text jumbotron</source>
+			</trans-unit>
+			<trans-unit id="flux.jumbotron.fields.btnText">
+				<source>Button Text jumbotron</source>
+			</trans-unit>
+			<trans-unit id="flux.jumbotron.fields.btnLink">
+				<source>Button Link jumbotron (Format: html://www.blah.com)</source>
+			</trans-unit>
+
+			<trans-unit id="flux.fce.slogan">
+                <source>Slogan</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.slogan-description">
+                <source>Representation of a slogan in quotation marks.</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headline">
+                <source>Headline</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headlinecolor">
+                <source>Headline color</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headlinetype">
+                <source>Type of heading</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.subtitle">
+                <source>Subtitle</source>
+            </trans-unit>
+
+
+            <trans-unit id="flux.fce.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.image-carousel">
+                <source>Picture carousel</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.image-carousel-description">
+                <source>A simple picture carousel</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.general-settings">
+                <source>General Settings</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.visibled">
+                <source>Number of items that should be visible in the desktop view</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.visiblet">
+                <source>Number of items that should be visible in the tablet view</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.visiblem">
+                <source>Number of items that should be visible in the mobile view</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.marginbetween">
+                <source>Distance between the elements</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.autoplay">
+                <source>Play automatically</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.speed">
+                <source>Speed</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.loop">
+                <source>Play in "Loop"</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.rewind">
+                <source>Rewind</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.lazyload">
+                <source>Reload images after loading if necessary?</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.navigation">
+                <source>Show navigation?</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.rewind">
+                <source>Rewind</source>
+            </trans-unit>
+
+            <trans-unit id="flux.fce.quote">
+                <source>Quote</source>
+            </trans-unit>
+
+
+
+            <trans-unit id="flux.sliderbootstrap.label">
+                <source>Responsive Slider</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.description">
+                <source>You can put a lot of pictures</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.headline">
+             <source>Headline</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.transition">
+                <source>Transition effect</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.firsttext">
+                <source>Title text slide</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.secondtext">
+                <source>Content text slide</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.speed">
+                <source>Slide's speed</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.visibled">
+                <source>Number of items that should be visible in the desktop view</source>
+            </trans-unit>
+            <trans-unit id="flux.sliderbootstrap.container">
+                <source>The slider with matgin left and right</source>
+            </trans-unit>
+            <trans-unit id="flux.starttemplate.label">
+                <source>Start Text</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.contactname">
+                <source>Contact name</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.contactdetails">
+                <source>Contact details</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.contactphone">
+                <source>Contact phone</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.contactfax">
+                <source>Contact fax</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.contactemail">
+                <source>Contact E-mail</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.separator">
+                <source>Add a separator</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.subheadlinetype">
+                <source>Type of subheading</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.class">
+                <source>(Optional) CSS class (Separate multiple classes by spaces)</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.container">
+                <source>Container yes/no?</source>
+            </trans-unit>
+            <trans-unit id="flux.fce.background">
+                 <source>Background</source>
+             </trans-unit>
+             <trans-unit id="flux.fce.distance-from-elements">
+                 <source>Distance between the elements (Should more than one element per column be true.)</source>
+             </trans-unit>
+             <trans-unit id="flux.fce.grid">
+                 <source>Number / width of the columns</source>
+             </trans-unit>
+
+             <trans-unit id="flux.gridbootstrap.label">
+                 <source>Grid bootstrap</source>
+             </trans-unit>
+             <trans-unit id="flux.gridbootstrap.description">
+                 <source>Grid bootstrap with custmizable clomun's number</source>
+             </trans-unit>
+
+
+             <trans-unit id="flux.googlemaps">
+             <source>Google Maps</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.description">
+             <source>A simple Google Maps</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.fields.fitBounds">
+             <source>Fit map to markers?</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.fields.address">
+             <source>Address for map center</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.fields.lng">
+             <source>Longitude for map center (preferred to address)</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.fields.lat">
+             <source>Latitude for map center (preferred to address)</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.fields.zoom">
+             <source>Zoom (1 = very far, 21 = very near)</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.fields.mapType">
+             <source>Map type</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.sections.markers">
+             <source>Markers</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker">
+             <source>Marker</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.address">
+             <source>Address</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.lng">
+             <source>Longitude (preferred to address)</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.lat">
+             <source>Latitude (preferred to address)</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.icon">
+             <source>Pin icon</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.iconFile">
+             <source>Upload pin icon</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.title">
+             <source>Title (marker tooltip and title of info window)</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.info">
+             <source>Text in info window</source>
+             </trans-unit>
+             <trans-unit id="flux.googlemaps.objects.marker.showInfo">
+             <source>Show info window of this marker?</source>
+             </trans-unit>
+
+
+            <trans-unit id="flux.bootstrapnavbar.label">
+                <source>Top Menu</source>
+            </trans-unit>
+            <trans-unit id="flux.bootstrapnavbar.description">
+                <source>Configuration of the top menu</source>
+            </trans-unit>
+            <trans-unit id="flux.bootstrapnavbar.companyname">
+                <source>Company's name</source>
+            </trans-unit>
+            <trans-unit id="flux.bootstrapnavbar.companylogo">
+                <source>Company's logo</source>
+            </trans-unit>
+            <trans-unit id="flux.bootstrapnavbar.navbartype">
+                <source>Menu type ?</source>
+            </trans-unit>
+            <trans-unit id="flux.bootstrapnavbar.navbarbackgroundcolor">
+                <source>Menu's background color ?</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

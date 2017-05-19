@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<!-- candidate details -->
+<div class="row">
+	<div class="col-md-2 text-center">
+		<img src="typo3conf/ext/candidateresume/Resources/Public/Images/person.png" style="width: 100px;" alt="img">
+	</div>
+	<div class="col-md-10">
+		<h2 class="text-center">
+			<f:format.case mode="capital">{candidate.firstName}</f:format.case>
+			<f:format.case mode="capital">{candidate.lastName}</f:format.case>
+			-
+			<f:format.case mode="capital">{candidate.professionalTitle}</f:format.case>
+		</h2>
+		<div class="col-md-5">
+			<i class="fa fa-map-marker color-pink"></i> <i>{candidate.address}, {candidate.city}</i>
+		</div>
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			<i class="fa fa-phone color-pink"></i> {candidate.phone}
+		</div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<i class="fa fa-envelope-o color-pink"></i> {candidate.email}
+		</div>
+	</div>
+	<div class="company-social col-xs-12 text-center">
+		<ul>
+			<li>
+				<f:link.external uri="{candidate.linkedin}" target="_blank"><i class="fa fa-linkedin"></i></f:link.external>
+				<i class="color-pink">Linkedin account</i>
+			</li>
+			<li></li>
+			<li>
+				<a><i class="fa fa-file-pdf-o pointer" onclick="showResume();"></i></a>
+				<i class="color-pink">View the resume file</i>
+			</li>
+		</ul>
+	</div>
+</div><!-- /candidate details -->
+</html>

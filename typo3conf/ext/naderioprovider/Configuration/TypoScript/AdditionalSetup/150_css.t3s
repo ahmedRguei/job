@@ -1,0 +1,11 @@
+page.includeCSS {
+    css100 = typo3conf/ext/naderioprovider/Resources/Public/Css/bootstrap.min.css
+    css200 = typo3conf/ext/naderioprovider/Resources/Public/Css/custom.css
+    css300 = typo3conf/ext/naderioprovider/Resources/Public/Css/color.css
+    css400 = typo3conf/ext/naderioprovider/Resources/Public/Css/responsive.css
+    css600 = typo3conf/ext/naderioprovider/Resources/Public/Css/jquery.mCustomScrollbar.css
+    css700 = typo3conf/ext/naderioprovider/Resources/Public/Css/style.css
+    css800 = https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+    css900 = https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons
+    css1000 = typo3conf/ext/naderioprovider/Resources/Public/Css/inputTags.css
+}

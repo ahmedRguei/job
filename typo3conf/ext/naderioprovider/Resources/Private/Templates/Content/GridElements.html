@@ -1,0 +1,94 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="gridcontainer" label="#21 Grid Elements" description="Container with custom classes"
+                   options="{group: 'FCE-Bootstrap', icon: 'EXT:naderioprovider/Resources/Public/Icons/Page/bootstrap.png'}">
+            <flux:form.option name="Fluidcontent" value="{sorting: 1}"/>
+
+            <flux:field.input name="heading" label="{f:translate(id: 'flux.fce.headline')}"/>
+            <flux:field.select name="headingtype" label="{f:translate(id: 'flux.fce.headlinetype')}" items="{h1: 'H1',h2: 'H2',h3: 'H3', h4: 'H4'}" default="h2" size="1" maxItems="1"/>
+            <flux:field.checkbox name="separator" label="{f:translate(id: 'flux.fce.separator')}" default="0"/>
+            <flux:field.input name="subheading" label="{f:translate(id: 'flux.fce.subtitle')}"/>
+            <flux:field.select name="subheadingtype" label="{f:translate(id: 'flux.fce.subheadlinetype')}" items="{h1: 'H1',h2: 'H2',h3: 'H3', h4: 'H4'}" default="h2" size="1" maxItems="1"/>
+            <flux:field.input name="class" label="{f:translate(id: 'flux.fce.class')}"/>
+            <flux:field.select name="withcontainer" label="{f:translate(id: 'flux.fce.container')}" items="{true: 'Yes',false: 'No'}" default="true" size="1" maxItems="1"/>
+            <flux:field.inline.fal name="background" label="{f:translate(id: 'flux.fce.background')}" default="NULL" allowedExtensions="'gif,jpg,jpeg,tif,tiff,bmp,pcx,tga,png,pdf,ai,svg'" multiple="FALSE" maxItems="1"/>
+            <flux:field.select name="sectionColor" label="Hintergrundfarbe:" items="{true: 'white',false: 'grey'}" default="true" size="1" maxItems="1"/>
+            <flux:field.select name="marginraw" label="{f:translate(id: 'flux.fce.distance-from-elements')}" items="{true: 'Yes',false: 'No'}" default="true" size="1" maxItems="1"/>
+            <flux:field.select name="row-count" label="{f:translate(id: 'flux.fce.grid')}" items="{col-100:'Cols 100',col-50-50: 'Cols 50-50', col-66-33: 'Cols 66-33', col-33-66: 'Cols 33-66', col-60-40: 'Cols 60-40', col-40-60: 'Cols 40-60', col-33-33-33: 'Cols 33-33-33', col-25-25-25-25: 'Cols 25-25-25-25'}" default="col-50-50" size="1" maxItems="1"/>
+            <flux:grid>
+                <flux:grid.row>
+                    <f:if condition="{row-count} == 'col-100'">
+                        <flux:grid.column name="col1" label="Column 100%" style="width: 100%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-50-50'">
+                        <flux:grid.column name="col1" label="Column 50%" style="width: 50%"/>
+                        <flux:grid.column name="col2" label="Column 50%" style="width: 50%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-66-33'">
+                        <flux:grid.column name="col1" label="Column 66%" style="width: 66%"/>
+                        <flux:grid.column name="col2" label="Column 33%" style="width: 33%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-33-66'">
+                        <flux:grid.column name="col1" label="Column 33%" style="width: 33%"/>
+                        <flux:grid.column name="col2" label="Column 66%" style="width: 66%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-60-40'">
+                        <flux:grid.column name="col1" label="Column 60%" style="width: 60%"/>
+                        <flux:grid.column name="col2" label="Column 40%" style="width: 40%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-40-60'">
+                        <flux:grid.column name="col1" label="Column 40%" style="width: 40%"/>
+                        <flux:grid.column name="col2" label="Column 60%" style="width: 60%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-33-33-33'">
+                        <flux:grid.column name="col1" label="Column 33%" style="width: 33%"/>
+                        <flux:grid.column name="col2" label="Column 33%" style="width: 33%"/>
+                        <flux:grid.column name="col3" label="Column 33%" style="width: 33%"/>
+                    </f:if>
+                    <f:if condition="{row-count} == 'col-25-25-25-25'">
+                        <flux:grid.column name="col1" label="Column 25%" style="width: 25%"/>
+                        <flux:grid.column name="col2" label="Column 25%" style="width: 25%"/>
+                        <flux:grid.column name="col3" label="Column 25%" style="width: 25%"/>
+                        <flux:grid.column name="col4" label="Column 25%" style="width: 25%"/>
+                    </f:if>
+                </flux:grid.row>
+            </flux:grid>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <b>Selbstdefinierte Inhaltsbereiche
+            <f:if condition="{withcontainer}=='false'">
+                <f:then>
+                    (ohne umschließenden Containier)
+                </f:then>
+                <f:else>
+                    (mit umschließenden Containier)
+                </f:else>
+            </f:if>
+        </b>
+        <f:if condition="{heading}">
+            <h4>{heading}</h4>
+          </f:if>
+        <f:if condition="{subheading}">
+            <h5>{subheading}</h5>
+        </f:if>
+    </f:section>
+
+    <f:section name="Main">
+        {v:content.resources.fal(field: 'background')
+                 -> v:iterator.first()
+                 -> v:variable.set(name: 'bgimage')}
+        <div class="section section-grid section-padding {class} {f:if(condition:'{sectionColor}', then:'section-white', else:'section-grey')} {f:if(condition:'{bgimage}', then:'section-background')}" {f:if(condition:'{bgimage}', then:'style="background-image: url(/{bgimage.url})"')}>
+            <div class="{f:if(condition:'{withcontainer}', then:'container', else:'grid-container')} clearfix">
+                <f:render partial="GridSwitch" arguments="{_all}"/>
+            </div>
+        </div>
+    </f:section>
+</div>

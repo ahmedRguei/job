@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-05-04T12:46:32Z" product-name="candidateresume">
+		<header/>
+		<body>
+			<trans-unit id="tx_candidateresume_domain_model_candidateresume">
+				<source>Candidate Resume</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidateresume.description">
+				<source>Candidate, resume and interview management</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate">
+				<source>Candidate</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.first_name">
+				<source>First Name</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.last_name">
+				<source>Last Name</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.longitude">
+				<source>Longitude</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.latittude">
+				<source>Latittude</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.experiences">
+				<source>Experiences</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.educations">
+				<source>Educations</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.skills">
+				<source>Skills</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidate.languages">
+				<source>Languages</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience">
+				<source>Experience</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience.company">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience.start_date">
+				<source>Start Date</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience.end_date">
+				<source>End Date</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_experience.address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_education">
+				<source>Education</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_education.school">
+				<source>School</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_education.degree">
+				<source>Degree</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_education.field_study">
+				<source>Field Study</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_education.from_date">
+				<source>From Date</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_education.to_date">
+				<source>To Date</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_skill">
+				<source>Skill</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_skill.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_skill.level">
+				<source>Level</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_language">
+				<source>Language</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_language.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_language.proficiency">
+				<source>Proficiency</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

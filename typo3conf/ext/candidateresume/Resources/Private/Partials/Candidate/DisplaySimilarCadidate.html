@@ -1,0 +1,22 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:for each="{similarCandidates}" as="candidate">
+        <li>
+            <div class="frame">
+                <a href=""><img src="typo3conf/ext/candidateresume/Resources/Public/Images/person.png" style="width: 60px;" alt="img"></a>
+            </div>
+            <div class="text-box">
+                <strong class="name">
+                    <f:link.action action="show" arguments="{candidate : candidate}"> {candidate.firstName} {candidate.lastName}</f:link.action>
+                </strong>
+                <span>
+                    <f:format.case mode="capital">{candidate.professionalTitle}</f:format.case>
+                </span>
+                <span>
+                    <f:format.case mode="capital">
+                        <f:format.crop maxCharacters="40">{candidate.address}</f:format.crop>, {candidate.city}
+                    </f:format.case>
+                </span>
+            </div>
+        </li>
+    </f:for>
+</html>

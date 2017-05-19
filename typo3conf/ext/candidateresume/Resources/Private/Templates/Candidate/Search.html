@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+    <f:render partial="Banner/Banner" section="Banner" arguments="{title: 'Search candidate', form : 1}" />
+    <div class="container" id="main-content-container">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="content-area" class="">
+                    <div id="loadMore">
+                        <f:link.action action="new" class="load-more">
+                            <i class="fa fa-user"></i> Add candidate
+                        </f:link.action>
+                    </div>
+                    <h3 class="text-center color-pink">Recent Candidates Added</h3>
+                    <ul id="myList">
+                        <f:widget.paginate objects="{candidates}" as="candidatesproject" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 7}">
+                            <f:for each="{candidatesproject}" as="candidate">
+                                <f:render partial="Candidate/DisplayCandidate" section="DisplayCandidate" arguments="{candidate: candidate}" />
+                            </f:for>
+                        </f:widget.paginate>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <h2>Needed Jobs</h2>
+                <aside>
+                    <div class="sidebar">
+                        <div class="box">
+                            <div class="thumb">
+                                <a href="#">
+                                    <img src="typo3conf/ext/candidateresume/Resources/Public/Images/features-img-1.jpg" alt="img">
+                                </a>
+                                <div class="caption">
+                                    <img src="typo3conf/ext/candidateresume/Resources/Public/Images/softtodo.png" alt="envato">
+                                </div>
+                            </div>
+                            <div class="text-box">
+                                <a href="#" class="btn-time">Full Time</a>
+                                <h4><a href="#">Web developper</a></h4>
+                                <a href="#" class="text"><i class="fa fa-map-marker"></i>Sfax, Tunisia</a>
+                                <a href="#" class="text"><i class="fa fa-calendar"></i>Dec 22, 2015 - Mar 17, 2016</a>
+                                <a href="#" class="btn-apply text-center" >Available candidates for this job</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</f:section>
+</html>

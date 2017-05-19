@@ -1,0 +1,102 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+
+    <f:layout name="Content"/>
+    <f:section name="Configuration">
+        <flux:form id="bootstrapnavbar" label="{f:translate(id: 'flux.bootstrapnavbar.label')}" description="{f:translate(id: 'flux.bootstrapnavbar.description')}"
+                   options="{group: 'FCE-Bootstrap', icon: 'EXT:naderioprovider/Resources/Public/Icons/Page/bootstrap.png'}">
+            <flux:field.input name="companyname" label="{f:translate(id: 'flux.bootstrapnavbar.companyname')}"/>
+            <flux:field.inline.fal name="companylogo" label="{f:translate(id: 'flux.bootstrapnavbar.companylogo')}" required="0" maxItems="1" minItems="0"/>
+            <flux:field.select name="navbartype" label="{f:translate(id: 'flux.bootstrapnavbar.navbartype')}" items="{navbar-default : 'navbar-default',navbar-fixed-top: 'navbar-fixed-top',navbar-static-top: 'navbar-static-top'}" default="navbar-default" size="1" maxItems="1"/>
+            <flux:field.input name="navbarbackgroundcolor" label="{f:translate(id: 'flux.bootstrapnavbar.navbarbackgroundcolor')}">
+                <flux:wizard.colorPicker />
+            </flux:field.input>
+        </flux:form>
+    </f:section>
+    <f:section name="Preview">
+        <nav class="navbar navbar-default " style="background: {navbarbackgroundcolor};">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <f:if condition="{v:content.resources.fal(field: 'companylogo')}">
+                            <f:then>
+                                <f:for each="{v:content.resources.fal(field: 'companylogo')}" as="image" iteration="i">
+                                    <f:image src="{image.id}" crop="{image.crop}" style="width: 10px; height: 10px;" alt="{image.title}"
+                                             title="{f:if(condition: image.description, then: '{image.title}: ', else: '{image.title}')}{image.description}"/>
+                                </f:for>
+                            </f:then>
+                            <f:else>
+                                {companyname}
+                            </f:else>
+                        </f:if>
+                    </a>
+                </div>
+                <div id="navbar1" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <v:page.menu useShortcutUid="1" title="{item.linktext}" levels="1" excludePages="">
+                            <f:for each="{menu}" as="item" iteration="i">
+                                <li class='<f:if condition="{item.uid}=={page.uid}">active</f:if>'>
+                                    <f:link.page pageUid="{item.uid}" title="{item.linktext}">
+                                        {item.linktext}
+                                    </f:link.page>
+                                </li>
+                            </f:for>
+                        </v:page.menu>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+    </f:section>
+
+    <f:section name="Main">
+        <nav class="navbar navbar-default {navbartype}" style="background: {navbarbackgroundcolor};">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <f:if condition="{v:content.resources.fal(field: 'companylogo')}">
+                        <f:then>
+                            <f:for each="{v:content.resources.fal(field: 'companylogo')}" as="image" iteration="i">
+                                <a href="#">
+                                <f:image src="{image.id}" crop="{image.crop}" style="width: 40px;height: 40px;margin: 6px; margin-right: 25px;" alt="{image.title}"
+                                         title="{f:if(condition: image.description, then: '{image.title}: ', else: '{image.title}')}{image.description}"/>
+                                </a>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <a class="navbar-brand" href="#">{companyname}</a>
+                        </f:else>
+                    </f:if>
+
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+
+                        <v:page.menu useShortcutUid="1" title="{item.linktext}" levels="1" excludePages="">
+                            <f:for each="{menu}" as="item" iteration="i">
+                                <li class='<f:if condition="{item.uid}=={page.uid}">active</f:if>'>
+                                    <f:link.page pageUid="{item.uid}" title="{item.linktext}">
+                                        {item.linktext}
+                                    </f:link.page>
+                                </li>
+                            </f:for>
+                        </v:page.menu>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+    </f:section>
+</div>
