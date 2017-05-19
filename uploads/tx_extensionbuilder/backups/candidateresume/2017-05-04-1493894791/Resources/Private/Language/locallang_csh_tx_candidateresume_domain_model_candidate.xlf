@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-05-04T12:46:06Z" product-name="candidateresume">
+		<header/>
+		<body>
+			<trans-unit id="tx_candidateresume_domain_model_candidateresume">
+				<source>Candidate Resume</source>
+			</trans-unit>
+			<trans-unit id="tx_candidateresume_domain_model_candidateresume.description">
+				<source>Candidate, resume and interview management</source>
+			</trans-unit>
+			<trans-unit id="first_name.description">
+				<source>First name of the candidate</source>
+			</trans-unit>
+			<trans-unit id="last_name.description">
+				<source>Last name of the candidate</source>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<source>Address of the candidate</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>City of the candidate</source>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<source>Phone number of the candidate</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>Email address of the candidate</source>
+			</trans-unit>
+			<trans-unit id="longitude.description">
+				<source>longitude</source>
+			</trans-unit>
+			<trans-unit id="latittude.description">
+				<source>latittude</source>
+			</trans-unit>
+			<trans-unit id="experiences.description">
+				<source>Experiences of the candidate</source>
+			</trans-unit>
+			<trans-unit id="educations.description">
+				<source>Educations of the candidate</source>
+			</trans-unit>
+			<trans-unit id="skills.description">
+				<source>Skills of the candidate</source>
+			</trans-unit>
+			<trans-unit id="languages.description">
+				<source>Languages of the candidate</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

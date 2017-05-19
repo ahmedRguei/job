@@ -1,0 +1,44 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<table class="tx-candidateresume" >
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_education.school" />
+		</td>
+		<td>
+		{education.school}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_education.degree" />
+		</td>
+		<td>
+		{education.degree}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_education.field_study" />
+		</td>
+		<td>
+		{education.fieldStudy}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_education.from_date" />
+		</td>
+		<td>
+		{education.fromDate -> f:format.date()}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_candidateresume_domain_model_education.to_date" />
+		</td>
+		<td>
+		{education.toDate -> f:format.date()}
+		</td>
+	</tr>
+</table>
+</html>
