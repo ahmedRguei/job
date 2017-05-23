@@ -1,169 +1,17 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
-     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
-     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
-     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
     <div class="clearfix">
         <!-- Candidate's Pdf resume -->
-        <div class="summary-box " id="pdfresume">
-            <h4>
-                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Resume
-                <i id="showResumeFa" class="fa fa-eye color-pink pull-right pointer" aria-hidden="true" onclick="showResume();"></i>
-                <i class="fa fa-edit color-pink pull-right pointer" aria-hidden="true" onclick="showResumeForm();"></i>
-            </h4>
-            <div class="col-md-12 <f:if condition='{resumefile.identifier}'>hidden</f:if>" id="formPdfResume">
-                <f:form action="upload" enctype="multipart/form-data" controller="Candidate" name="candidate" object="{candidate}" >
-                    <div class="col-sm-6 text-center">
-                        <f:form.upload name="resmue" class="form-control " />
-                    </div>
-                    <div class="col-sm-6 text-center">
-                        <f:form.submit value="Save" class="btn btn-primary btn-md" />
-                    </div>
-                </f:form>
-            </div>
-            <f:if condition="{resumefile.identifier}">
-                <iframe src="fileadmin{resumefile.identifier}" id="pdfresumme" style="width:100%;" frameborder="0"></iframe>
-            </f:if>
-        </div><!-- /Candidate's Pdf resume -->
+        <f:render partial="Candidate/PdfResume" arguments="{candidate:candidate, resumefile:resumefile}" /><!-- /Candidate's Pdf resume -->
         <!-- Candidate's Interview details -->
-        <div class="summary-box" id="interviwdetails">
-            <h4>
-                <i class="fa fa-black-tie color-pink" aria-hidden="true"></i> Interview details
-                <i class="fa fa-edit color-pink pull-right pointer" aria-hidden="true" onclick="ediIterviewDetails();"></i>
-            </h4>
-            <div style="padding: 10px;">
-                <span>
-                    <b class="col-sm-3 col-xs-6 no-padding-right-left"><i class="fa fa-clock-o color-bleu-fa" aria-hidden="true"></i> Availibility</b>
-                    <i id="availabilityElement" class="col-sm-9 col-xs-6 no-padding-right-left"><f:format.case mode="capital">{candidate.availability}</f:format.case></i>
-                </span>
-                <span>
-                    <b class="col-sm-3 col-xs-6 no-padding-right-left"><i class="fa fa-calendar color-bleu-fa"></i> Planned date</b>
-                    <i id="plannedInterviewDateElement" class="col-sm-9 col-xs-6 no-padding-right-left"><f:format.date>{candidate.plannedInterviewDate}</f:format.date></i>
-                </span>
-                <span>
-                    <b class="col-sm-3 col-xs-6 no-padding-right-left"><i class="fa fa-calendar color-bleu-fa"></i> Real date</b>
-                    <i id="realInterviewDateElement" class="col-sm-9 col-xs-6 no-padding-right-left"><f:format.date>{candidate.realInterviewDate}</f:format.date></i>
-                </span>
-                <span>
-                    <b class="col-xs-12 no-padding-right-left"> <i class="fa fa-edit color-bleu-fa"></i> Notes</b>
-                </span>
-                <span class="text-justify col-sm-12" id="interviewNotesElement">
-                    {candidate.interviewNotes}
-                </span>
-            </div>
-        </div><!-- /Candidate's Interview details -->
-        <!-- Candidate's Interview details (edit) -->
-        <div class="summary-box" id="editinterviwdetails" style="display: none;">
-            <h4>
-                <i class="fa fa-black-tie color-pink" aria-hidden="true"></i> Interview details
-                <i class="fa fa-edit color-pink pull-right pointer" aria-hidden="true" onclick="disableIterviewDetails();"></i>
-            </h4>
-            <div style="padding: 20px;">
-                <f:form id="updateInterview" action="updateAjax" controller="Candidate" name="candidate" object="{candidate}" >
-                    <span>
-                        <label for="availability1"><i class="fa fa-clock-o color-bleu-fa" aria-hidden="true"></i> Availibility</label> <br />
-                        <div class="text-center">
-                            <i class="fa fa-check color-bleu-fa" aria-hidden="true" for="availability1"></i> Yes <f:form.radio property="availability" id="availability1" value="yes"  />
-                            <i class="fa fa-close color-bleu-fa" aria-hidden="true" for="availability2"></i> No <f:form.radio property="availability"  id="availability2" value="no" />
-                        </div>
-                    </span>
-                    <span>
-                        <label for="plannedInterviewDate"><i class="fa fa-calendar color-bleu-fa" aria-hidden="true"></i> Planned date</label>
-                        <f:form.textfield property="plannedInterviewDate" id="plannedInterviewDate" class="form-control col-sm-12"
-                                          value="{candidate.plannedInterviewDate->f:format.date(format:'Y-m-d\TH:i:sP')}" />
-                    </span>
-                    <span>
-                        <label for="realInterviewDate"><i class="fa fa-calendar color-bleu-fa" aria-hidden="true"></i> Real date</label>
-                        <f:form.textfield property="realInterviewDate" id="realInterviewDate" class="form-control col-sm-12"
-                                          value="{candidate.realInterviewDate->f:format.date(format:'Y-m-d\TH:i:sP')}" />
-                    </span>
-                    <span>
-                        <i class="fa fa-edit color-bleu-fa"></i> <b>Notes : </b>
-                        <f:form.textarea property="interviewNotes" id="interviewNotes" value="{candidate.interviewNotes}" class="form-control noresize col-sm-12" />
-                    </span>
-                    <f:form.submit value="Save" id="interviewsubmit" class="btn btn-primary pull-right" />
-                </f:form>
-            </div>
-        </div><!-- /Candidate's Interview details (edit) -->
+        <f:render partial="Candidate/InterviewDetails" arguments="{candidate:candidate}" /><!-- /Candidate's Interview details -->
         <!-- Candidate's Educations -->
-        <f:if condition="{educations -> f:count()} > 0">
-            <div class="summary-box"  >
-                <h4>
-                    <i class="fa fa-university color-pink" aria-hidden="true"></i> Education
-                    <f:link.action action="new" controller="Education" arguments="{candidate : candidate}" class="pull-right ">
-                        <i class="fa fa-edit color-pink pointer" aria-hidden="true"></i>
-                    </f:link.action>
-                </h4>
-                <f:for each="{educations}" as="education">
-                    <div class="outer">
-                        <strong class="title">{education.degree}, {education.school}</strong>
-                        <div class="col">
-                            <span>{education.fromDate -> f:format.date()} - {education.toDate -> f:format.date()}</span>
-                            <p>{education.fieldStudy}</p>
-                        </div>
-                    </div>
-                </f:for>
-            </div>
-        </f:if><!-- /Candidate's Educations -->
+        <f:render partial="Education/Details" arguments="{candidate:candidate, educations:educations}" /><!-- /Candidate's Educations -->
         <!-- Candidate's Experiences -->
-        <f:if condition="{experiences -> f:count()} > 0">
-            <div class="summary-box" >
-                <h4>
-                    <i class="fa fa-tachometer color-pink" aria-hidden="true"></i> Experience
-                    <f:link.action action="new" controller="Experience" arguments="{candidate : candidate}" class="pull-right">
-                        <i class="fa fa-edit color-pink pointer" aria-hidden="true"></i>
-                    </f:link.action>
-                </h4>
-                <f:for each="{experiences}" as="experience">
-                    <div class="outer">
-                        <strong class="title">{experience.title} at <b>({experience.company})</b></strong>
-                        <div class="col">
-                            <span>{experience.startDate -> f:format.date()} - {experience.endDate -> f:format.date()}</span>
-                            <p>{experience.description}</p>
-                        </div>
-                    </div>
-                </f:for>
-            </div>
-        </f:if><!-- /Candidate's Experiences -->
+        <f:render partial="Experience/Details" arguments="{candidate:candidate, experiences:experiences}" /><!-- /Candidate's Experiences -->
         <!-- Candidate's Skills ajax -->
-        <div class="skills-box">
-            <h4><i class="fa fa-code color-pink" aria-hidden="true"></i> Skills</h4>
-            <div class="progress-box">
-                <f:for each="{skills}" as="skill">
-                    <strong class="title"><i class="fa fa-code" aria-hidden="true"></i> {skill.title} {skill.level}</strong>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 70%;"> <span> 70%</span> </div>
-                    </div>
-                </f:for>
-                <f:form id="updateAcquiredSkills" action="updateAcquiredSkills" controller="Candidate" name="candidate" object="{candidate}" >
-                    <div class="col-sm-12">
-                        <f:form.textfield property="acquiredSkills" id="acquiredSkills" value="{candidate.acquiredSkills}" />
-                    </div>
-                    <div class="col-sm-12 text-center">
-                        <f:form.submit value="Save" id="acquiredskillssubmit" class="btn btn-primary pull-right" />
-                    </div>
-                </f:form>
-            </div>
-        </div><!-- /Candidate's Skills ajax -->
+        <f:render partial="Skill/Details" arguments="{candidate:candidate, skills:skills}" /><!-- /Candidate's Skills ajax -->
         <!-- Candidate's Languages -->
-        <div class="skills-box">
-            <h4><i class="fa fa-globe color-pink" aria-hidden="true"></i> Languages</h4>
-            <div class="progress-box">
-                <f:for each="{languages}" as="language">
-                    <strong class="title"><i class="fa fa-globe" aria-hidden="true"></i> {language.title}</strong>
-                    <div class="">
-                        {language.proficiency}
-                    </div>
-                </f:for>
-                <f:form id="updateSpokenLanguges" action="updateSpokenLanguges" controller="Candidate" name="candidate" object="{candidate}" >
-                    <div class="col-sm-12">
-                        <f:form.textfield property="spokenLanguage" id="spokenLanguage" value="{candidate.spokenLanguage}" />
-                    </div>
-                    <div class="col-sm-12 text-center">
-                        <f:form.submit id="spokenlangugessubmit" value="Save" class="btn btn-primary pull-right" />
-                    </div>
-                </f:form>
-            </div>
-        </div><!-- /Candidate's Languages -->
+        <f:render partial="Language/Details" arguments="{candidate:candidate, languages:languages}" /><!-- /Candidate's Languages -->
     </div>
     <!-- script ajax -->
     <script type="text/javascript">
@@ -185,10 +33,28 @@
                 });
                 return false;
             });//end change details interview
-
+            //start change info candidadate
+            $('#infosubmit').click(function(){
+                var ajaxURL = '<f:uri.action action="updateInfoAjax" controller="Candidate" pageType="95" arguments="{candidate : candidate}" noCacheHash="1" />';
+                var form = $('#updateInfo');
+                $.post(ajaxURL, form.serialize(), function(response) {
+                    var items = [];
+                    $.each(response, function(key, val) {
+                        $("#candidatfirstname").text(val.candidatfirstname);
+                        $("#candidatlastname").text(val.candidatlastname);
+                        $("#candidatprofessionaltitle").text(val.candidatprofessionaltitle);
+                        $("#candidataddress").text(val.candidataddress);
+                        $("#candidatcity").text(val.candidatcity);
+                        $("#candidatphone").text(val.candidatphone);
+                        $("#candidatemail").text(val.candidatemail);
+                    });
+                    ediInfosCandidat();
+                    notification('minimalist', 'Saved !','Candidate basic informations are changed');
+                });
+                return false;
+            });//end change info candidadate
             //start change acquiredskills
             $('#acquiredskillssubmit').click(function(){
-
                 var ajaxURL = '<f:uri.action action="updateAcquiredSkills" controller="Candidate" pageType="97" arguments="{candidate : candidate}" noCacheHash="1" />';
                 var form = $('#updateAcquiredSkills');
                 $.post(ajaxURL, form.serialize(), function(response) {
@@ -198,10 +64,8 @@
                 });
                 return false;
             });//end change acquiredskills
-
-            //start change acquiredskills
+            //start change spoken languages
             $('#spokenlangugessubmit').click(function(){
-
                 var ajaxURL = '<f:uri.action action="updateSpokenLanguges" controller="Candidate" pageType="96" arguments="{candidate : candidate}" noCacheHash="1" />';
                 var form = $('#updateSpokenLanguges');
                 $.post(ajaxURL, form.serialize(), function(response) {
@@ -210,8 +74,7 @@
                     notification('minimalist', 'Saved !','Spoken languages changed');
                 });
                 return false;
-            });//end change acquiredskills
-
+            });//end change spoken languages
         });
     </script><!-- /script ajax -->
 </html>

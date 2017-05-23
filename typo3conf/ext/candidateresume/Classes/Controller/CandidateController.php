@@ -57,7 +57,6 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     {
         //candidate's information
         $this->view->assign('candidate', $candidate);
-
         $numberOfLanguages = count(explode(',', $candidate->getSpokenLanguage()));
         $this->view->assign('numberOfLanguages', $numberOfLanguages);
         $this->view->assign('skills', $candidate->getSkills());
@@ -84,7 +83,7 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         if($this->request->hasArgument('search')){
             $search = $this->request->getArgument('search');
         }
-        $candidates = $this->candidateRepository->findByName($search['name'], $search['skills'], $search['location']);
+        $candidates = $this->candidateRepository->findByName($search['name'], $search['title'], $search['skills']);
         $this->view->assign('candidates', $candidates);
     }
 
@@ -212,13 +211,36 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //begin : update the longitude and latitude automaticly
         $this->setLongitudeLatitude($candidate);
         //end : update the longitude and latitude automaticly
-        //$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->candidateRepository->update($candidate);
         $json[$candidate->getUid()] = array(
             'availabilityElement' => $candidate->getAvailability(),
             'interviewNotesElement' => $candidate->getInterviewNotes(),
             'plannedInterviewDateElement' => $candidate->getPlannedInterviewDate(),
             'realInterviewDateElement' => $candidate->getRealInterviewDate()
+        );
+        return json_encode($json);
+    }
+
+    /**
+     * action updateInfoAjax
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Candidate $candidate
+     * @return void
+     */
+    public function updateInfoAjaxAction(\Softtodo\Candidateresume\Domain\Model\Candidate $candidate)
+    {
+        //begin : update the longitude and latitude automaticly
+        $this->setLongitudeLatitude($candidate);
+        //end : update the longitude and latitude automaticly
+        $this->candidateRepository->update($candidate);
+        $json[$candidate->getUid()] = array(
+            'candidatfirstname' => $candidate->getFirstName(),
+            'candidatlastname' => $candidate->getLastName(),
+            'candidatprofessionaltitle' => $candidate->getProfessionalTitle(),
+            'candidataddress' => $candidate->getAddress(),
+            'candidatcity' => $candidate->getCity(),
+            'candidatphone' => $candidate->getPhone(),
+            'candidatemail' => $candidate->getEmail()
         );
         return json_encode($json);
     }

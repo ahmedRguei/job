@@ -94,14 +94,36 @@ class ExperienceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
     public function createAction(\Softtodo\Candidateresume\Domain\Model\Experience $newExperience,
                                  \Softtodo\Candidateresume\Domain\Model\Candidate $candidate )
     {
-       // var_dump($this->request->getArgument('file'));exit;
-        $filedata = $this->request->getArgument('file');
-        $file = $this->uploadFile($filedata, 'aaa', $newExperience);
         $candidate->addExperience($newExperience);
         $this->candidateRepository->update($candidate);
-        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->experienceRepository->add($newExperience);
         $this->redirect('new', 'Experience', 'Candidateresume', array('candidate' => $candidate) );
+    }
+    /**
+     * action createAjax
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $newExperience
+     * @param \Softtodo\Candidateresume\Domain\Model\Candidate $candidate
+     * @return void
+     */
+    public function createAjaxAction(\Softtodo\Candidateresume\Domain\Model\Experience $newExperience,
+                                    \Softtodo\Candidateresume\Domain\Model\Candidate $candidate )
+    {
+        // if experience is empty, do not make it persistent
+        if ($newExperience->getAddress()=="") return FALSE;
+        $candidate->addExperience($newExperience);
+        $this->candidateRepository->update($candidate);
+        $this->experienceRepository->add($newExperience);
+        $json[$newExperience->getUid()] = array(
+            'title'=>$newExperience->getTitle(),
+            'company'=>$newExperience->getCompany(),
+            'startdate'=>$newExperience->getStartDate(),
+            'enddate'=>$newExperience->getEndDate(),
+            'description'=>$newExperience->getDescription(),
+            'address'=>$newExperience->getAddress(),
+            'uid' => $newExperience->getUid()
+        );
+        return json_encode($json);
     }
 
     /**
@@ -120,11 +142,24 @@ class ExperienceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
      * action update
      * 
      * @param \Softtodo\Candidateresume\Domain\Model\Experience $experience
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $candidate
      * @return void
      */
-    public function updateAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience)
+    public function updateAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience,
+                                 \Softtodo\Candidateresume\Domain\Model\Candidate $candidate)
     {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->experienceRepository->update($experience);
+        $this->persistenceManager->persistAll();
+        $this->redirect('show', 'Candidate', 'Candidateresume', array('candidate' => $candidate) );
+    }
+    /**
+     * action updateCandidat
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $experience
+     * @return void
+     */
+    public function updateCandidatAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience)
+    {
         $this->experienceRepository->update($experience);
         $this->redirect('list');
     }
@@ -133,13 +168,28 @@ class ExperienceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
      * action delete
      * 
      * @param \Softtodo\Candidateresume\Domain\Model\Experience $experience
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $candidate
      * @return void
      */
-    public function deleteAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience)
+    public function deleteAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience,
+                                 \Softtodo\Candidateresume\Domain\Model\Experience $candidate)
     {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->experienceRepository->remove($experience);
-        $this->redirect('list');
+        $this->redirect('show', 'Candidate', 'Candidateresume', array('candidate' => $candidate) );
+    }
+    /**
+     * action deleteAjax
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $experience
+     * @return void
+     */
+    public function deleteAjaxAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience)
+    {
+        $this->experienceRepository->remove($experience);
+        $json[$experience->getUid()] = array(
+            'uid' => $experience->getUid()
+        );
+        return json_encode($json);
     }
 
     protected function createFileReferenceFromFalFileObject(\TYPO3\CMS\Core\Resource\File $file, $resourcePointer = null, $obj)

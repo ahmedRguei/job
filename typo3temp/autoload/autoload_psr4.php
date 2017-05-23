@@ -5,6 +5,7 @@
 $typo3InstallDir = PATH_site;
 
 return array(
+    'DmitryDulepov\\Realurl\\' => array($typo3InstallDir . 'typo3conf/ext/realurl/Classes'),
     'EBT\\ExtensionBuilder\\' => array($typo3InstallDir . 'typo3conf/ext/extension_builder/Classes'),
     'FluidTYPO3\\Fluidcontent\\' => array($typo3InstallDir . 'typo3conf/ext/fluidcontent/Classes'),
     'FluidTYPO3\\Fluidpages\\' => array($typo3InstallDir . 'typo3conf/ext/fluidpages/Classes'),

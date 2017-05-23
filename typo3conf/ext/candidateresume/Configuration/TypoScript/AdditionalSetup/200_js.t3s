@@ -1,0 +1,15 @@
+page.includeJS{
+    js1 = typo3conf/ext/candidateresume/Resources/Public/Js/jquery.min.js
+    js2 = typo3conf/ext/candidateresume/Resources/Public/Js/bootstrap.min.js
+    js3 = typo3conf/ext/candidateresume/Resources/Public/Js/jquery.bootstrap.js
+    js4 = typo3conf/ext/candidateresume/Resources/Public/Js/material-bootstrap-wizard.js
+    js5 = typo3conf/ext/candidateresume/Resources/Public/Js/jquery.validate.min.js
+    js6 = typo3conf/ext/candidateresume/Resources/Public/Js/map.js
+    js7 = typo3conf/ext/candidateresume/Resources/Public/Js/bootstrap-notify.js
+    js8 = typo3conf/ext/candidateresume/Resources/Public/Js/scripts.js
+    js9 = typo3conf/ext/candidateresume/Resources/Public/Js/inputTags.jquery.js
+    js10 = https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js
+}
+page.includeJSFooter{
+    js11 = https://maps.googleapis.com/maps/api/js?key=AIzaSyAlJ0N7UHEGQikAZDucUnnAHcOhUkhyJrU&callback=initMap
+}

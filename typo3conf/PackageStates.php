@@ -204,6 +204,12 @@ return [
             'packagePath' => 'typo3/sysext/reports/',
             'suggestions' => [],
         ],
+        'scheduler' => [
+            'composerName' => 'typo3/cms-scheduler',
+            'state' => 'active',
+            'packagePath' => 'typo3/sysext/scheduler/',
+            'suggestions' => [],
+        ],
         'sv' => [
             'composerName' => 'typo3/cms-sv',
             'state' => 'active',
@@ -282,6 +288,12 @@ return [
             'packagePath' => 'typo3conf/ext/extension_builder/',
             'suggestions' => [],
         ],
+        'realurl' => [
+            'composerName' => 'dmitryd/typo3-realurl',
+            'state' => 'active',
+            'packagePath' => 'typo3conf/ext/realurl/',
+            'suggestions' => [],
+        ],
         'adodb' => [
             'composerName' => 'typo3/cms-adodb',
             'state' => 'inactive',
@@ -340,12 +352,6 @@ return [
             'composerName' => 'typo3/cms-recycler',
             'state' => 'inactive',
             'packagePath' => 'typo3/sysext/recycler/',
-            'suggestions' => [],
-        ],
-        'scheduler' => [
-            'composerName' => 'typo3/cms-scheduler',
-            'state' => 'inactive',
-            'packagePath' => 'typo3/sysext/scheduler/',
             'suggestions' => [],
         ],
         'sys_action' => [

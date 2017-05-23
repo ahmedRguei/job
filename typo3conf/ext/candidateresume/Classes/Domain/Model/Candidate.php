@@ -103,14 +103,14 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * plannedInterviewDate
      *
-     * @var \DateTime
+     * @var \string
      */
     protected $plannedInterviewDate = null;
 
     /**
      * realInterviewDate
      *
-     * @var \DateTime
+     * @var \string
      */
     protected $realInterviewDate = null;
 

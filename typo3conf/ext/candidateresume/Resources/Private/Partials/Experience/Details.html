@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+    <div class="summary-box">
+        <h4>
+            <i class="fa fa-tachometer color-pink" aria-hidden="true"></i> Experience
+            <i class="fa fa-plus color-bleu-fa pull-right pointer" aria-hidden="true" onclick="addCandidatExperiences();"></i>
+        </h4>
+        <!-- add -->
+        <div id="addexperience" class="row hidden">
+            <f:form id="newExperience" action="createAjax" controller="Experience" name="newExperience" object="{newExperience}" arguments="{candidate : candidate}" >
+                <div class="col-md-6">
+                    <label for="title" class="">
+                        <f:translate key="tx_candidateresume_domain_model_experience.title" />
+                    </label>
+                    <f:form.textfield property="title" id="title" class="form-control"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="company">
+                        <f:translate key="tx_candidateresume_domain_model_experience.company" />
+                    </label>
+                    <f:form.textfield property="company" id="company" class="form-control"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="startDate">
+                        <f:translate key="tx_candidateresume_domain_model_experience.start_date" />
+                    </label>
+                    <f:form.textfield property="startDate" id="startDate" class="form-control date-picker"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="endDate">
+                        <f:translate key="tx_candidateresume_domain_model_experience.end_date" />
+                    </label>
+                    <f:form.textfield property="endDate" id="endDate" class="form-control date-picker" />
+                </div>
+                <div class="col-md-12">
+                    <label for="description">
+                        <f:translate key="tx_candidateresume_domain_model_experience.description" />
+                    </label>
+                    <f:form.textfield property="description" id="description" class="form-control" />
+                </div>
+                <div class="col-md-12">
+                    <label for="description">
+                        <f:translate key="tx_candidateresume_domain_model_experience.address" />
+                    </label>
+                    <f:form.textfield property="address" id="address" class="form-control" />
+                </div>
+                <div class="pull-right">
+                    <input type="button" class="btn  btn-fill btn-primary btn-wd" id="experiencesubmit" value="Save" />
+                </div>
+            </f:form>
+        </div>
+        <script type="text/javascript">var ajaxURLAddExp = '<f:uri.action action="createAjax" controller="Experience" pageType="94" arguments="{candidate : candidate}" noCacheHash="1" />';</script>
+        <script type="text/javascript" src="typo3conf/ext/candidateresume/Resources/Public/Js/ajax.js"></script>
+        <div id="divexperienceslist">
+        <f:for each="{experiences}" as="experience">
+            <!-- Button delete : remove education -->
+            <f:link.action action="delete" controller="Experience" arguments="{experience : experience, candidate:candidate}" title="Delete this experience">
+                <i class="fa fa-trash color-bleu-fa pull-right pointer" aria-hidden="true"></i>
+            </f:link.action><!-- /Button delete : remove education -->
+            <i class="fa fa-edit color-bleu-fa pull-right pointer" aria-hidden="true" onclick="editCandidatExperiences({experience.uid});"></i>
+            <!-- show -->
+            <div class="outer" id="candidatexperiences{experience.uid}" style="padding-top: 10px;border-top: 1px solid #4b74a7;">
+                <strong class="title">{experience.title}  <b><i class="fa fa-map-marker"></i> {experience.company}</b></strong>
+                <div class="col">
+                    <span>{experience.startDate} - {experience.endDate}</span>
+                    <p>{experience.description}</p>
+                </div>
+            </div><!-- /show -->
+            <!-- edit -->
+            <div id="editcandidatexperiences{experience.uid}" class="outer hidden" style="padding-top: 10px;border-top: 1px solid #4b74a7;">
+                <f:form id="formsubmit{experience.uid}" action="update" controller="Experience" name="experience" object="{experience}" arguments="{experience : experience , candidate : candidate}" >
+                    <div class="col-md-6">
+                        <label for="title" class="">
+                            <f:translate key="tx_candidateresume_domain_model_experience.title" />
+                        </label>
+                        <f:form.textfield property="title" id="title" value="{experience.title}" class="form-control"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="company">
+                            <f:translate key="tx_candidateresume_domain_model_experience.company" />
+                        </label>
+                        <f:form.textfield property="company" id="company" value="{experience.company}" class="form-control"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="startDate">
+                            <f:translate key="tx_candidateresume_domain_model_experience.start_date" />
+                        </label>
+                        <f:form.textfield property="startDate" id="startDate" value="{experience.startDate}" class="form-control date-picker"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="endDate">
+                            <f:translate key="tx_candidateresume_domain_model_experience.end_date" />
+                        </label>
+                        <f:form.textfield property="endDate" id="endDate" class="form-control date-picker" value="{experience.endDate}" />
+                    </div>
+                    <div class="col-md-12">
+                        <label for="description">
+                            <f:translate key="tx_candidateresume_domain_model_experience.description" />
+                        </label>
+                        <f:form.textfield property="description" id="description" value="{experience.description}" class="form-control" />
+                    </div>
+                    <f:form.submit  id="submit{experience.uid}" class="upexpclicked btn btn-primary pull-right" value="save" />
+                </f:form>
+            </div><!-- /edit -->
+        </f:for>
+        </div>
+    </div>
+</html>

@@ -32,6 +32,11 @@ class EducationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @inject
      */
     protected $candidateRepository = null;
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @inject
+     */
+    protected $persistenceManager;
 
     /**
      * action list
@@ -106,7 +111,8 @@ class EducationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
                 'degree' => $education->getDegree(),
                 'fieldstudy' => $education->getFieldStudy(),
                 'fromdate' => $education->getFromDate(),
-                'todate' => $education->getToDate()
+                'todate' => $education->getToDate(),
+                'uid' => $education->getUid()
             );
         }
         return json_encode($json);
@@ -128,25 +134,28 @@ class EducationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * action update
      * 
      * @param \Softtodo\Candidateresume\Domain\Model\Education $education
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $candidate
      * @return void
      */
-    public function updateAction(\Softtodo\Candidateresume\Domain\Model\Education $education)
+    public function updateAction(\Softtodo\Candidateresume\Domain\Model\Education $education,
+                                 \Softtodo\Candidateresume\Domain\Model\Experience $candidate)
     {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->educationRepository->update($education);
-        $this->redirect('list');
+        $this->persistenceManager->persistAll();
+        $this->redirect('show', 'Candidate', 'Candidateresume', array('candidate' => $candidate) );
     }
 
     /**
      * action delete
      * 
      * @param \Softtodo\Candidateresume\Domain\Model\Education $education
+     * @param \Softtodo\Candidateresume\Domain\Model\Experience $candidate
      * @return void
      */
-    public function deleteAction(\Softtodo\Candidateresume\Domain\Model\Education $education)
+    public function deleteAction(\Softtodo\Candidateresume\Domain\Model\Education $education,
+                                 \Softtodo\Candidateresume\Domain\Model\Experience $candidate)
     {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->educationRepository->remove($education);
-        $this->redirect('list');
+        $this->redirect('show', 'Candidate', 'Candidateresume', array('candidate' => $candidate) );
     }
 }

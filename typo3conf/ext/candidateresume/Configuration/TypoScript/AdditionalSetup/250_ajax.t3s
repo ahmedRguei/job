@@ -1,0 +1,72 @@
+createAjax = PAGE
+createAjax {
+    typeNum = 99
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}
+updateInterviewAjax = PAGE
+updateInterviewAjax {
+    typeNum = 98
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}
+updateAcquiredSkillsAjax = PAGE
+updateAcquiredSkillsAjax {
+    typeNum = 97
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}
+updateSpokenLangugesAjax = PAGE
+updateSpokenLangugesAjax {
+    typeNum = 96
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}
+updateInfoCandidateAjax = PAGE
+updateInfoCandidateAjax {
+    typeNum = 95
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}
+addExperinceCandidateAjax = PAGE
+addExperinceCandidateAjax {
+    typeNum = 94
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}

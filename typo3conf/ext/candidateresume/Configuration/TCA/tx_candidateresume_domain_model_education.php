@@ -139,7 +139,7 @@ return [
 	        'label' => 'LLL:EXT:candidateresume/Resources/Private/Language/locallang_db.xlf:tx_candidateresume_domain_model_education.from_date',
 	        'config' => [
 			    'type' => 'input',
-			    'size' => 7,
+			    'size' => 30,
 			    'eval' => 'trim'
 			],
 	    ],
@@ -148,7 +148,7 @@ return [
 	        'label' => 'LLL:EXT:candidateresume/Resources/Private/Language/locallang_db.xlf:tx_candidateresume_domain_model_education.to_date',
 	        'config' => [
 			    'type' => 'input',
-			    'size' => 7,
+			    'size' => 30,
 			    'eval' => 'trim'
 			],
 	    ],

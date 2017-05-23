@@ -1,4 +1,10 @@
-
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/candidateresume/Configuration/TypoScript/AdditionalSetup/100_page.t3s">
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/candidateresume/Configuration/TypoScript/AdditionalSetup/150_css.t3s">
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/candidateresume/Configuration/TypoScript/AdditionalSetup/200_js.t3s">
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/ext/candidateresume/Configuration/TypoScript/AdditionalSetup/250_ajax.t3s">
+config.baseURL = {$baseURL}
+config.simulateStaticDocuments = 0
+config.tx_realurl_enable = 1
 plugin.tx_candidateresume_candidateresume {
   view {
     templateRootPaths.0 = EXT:candidateresume/Resources/Private/Templates/
@@ -19,7 +25,6 @@ plugin.tx_candidateresume_candidateresume {
     #callDefaultActionIfActionCantBeResolved = 1
   }
 }
-
 plugin.tx_candidateresume._CSS_DEFAULT_STYLE (
     textarea.f3-form-error {
         background-color:#FF9F9F;

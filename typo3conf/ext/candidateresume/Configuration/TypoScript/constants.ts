@@ -1,4 +1,4 @@
-
+baseURL = http://job.local/
 plugin.tx_candidateresume_candidateresume {
   view {
     # cat=plugin.tx_candidateresume_candidateresume/file; type=string; label=Path to template root (FE)

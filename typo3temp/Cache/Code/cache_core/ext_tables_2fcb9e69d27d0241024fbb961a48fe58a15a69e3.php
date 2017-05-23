@@ -1661,6 +1661,46 @@ if (TYPO3_MODE === 'BE') {
 TYPO3\CMS\Core\Utility\ExtensionManagementUtility::loadNewTcaColumnsConfigFiles();
 
 /**
+ * Extension: scheduler
+ * File: D:/www/htdocs/job/typo3/sysext/scheduler/ext_tables.php
+ */
+
+$_EXTKEY = 'scheduler';
+$_EXTCONF = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY];
+
+
+defined('TYPO3_MODE') or die();
+
+if (TYPO3_MODE === 'BE') {
+    // Add module
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
+        'system',
+        'txschedulerM1',
+        '',
+        '',
+        [
+            'routeTarget' => \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController::class . '::mainAction',
+            'access' => 'admin',
+            'name' => 'system_txschedulerM1',
+            'labels' => [
+                'tabs_images' => [
+                    'tab' => 'EXT:scheduler/Resources/Public/Icons/module-scheduler.svg',
+                ],
+                'll_ref' => 'LLL:EXT:scheduler/Resources/Private/Language/locallang_mod.xlf',
+            ],
+        ]
+    );
+
+    // Add context sensitive help (csh) to the backend module
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
+        '_MOD_system_txschedulerM1',
+        'EXT:scheduler/Resources/Private/Language/locallang_csh_scheduler.xlf'
+    );
+}
+
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::loadNewTcaColumnsConfigFiles();
+
+/**
  * Extension: sys_note
  * File: D:/www/htdocs/job/typo3/sysext/sys_note/ext_tables.php
  */
@@ -1889,6 +1929,52 @@ if (TYPO3_MODE === 'BE') {
             'labels' => 'LLL:EXT:extension_builder/Resources/Private/Language/locallang_mod.xlf',
         )
     );
+}
+
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::loadNewTcaColumnsConfigFiles();
+
+/**
+ * Extension: realurl
+ * File: D:/www/htdocs/job/typo3conf/ext/realurl/ext_tables.php
+ */
+
+$_EXTKEY = 'realurl';
+$_EXTCONF = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY];
+
+
+// Backend module is available only in TYPO3 7.6 or newer
+if (version_compare(TYPO3_version, '7.6.0', '>=')) {
+	$realurlConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['realurl'];
+	if (is_string($realurlConfiguration)) {
+		$realurlConfiguration = (array)@unserialize($realurlConfiguration);
+	}
+	else {
+		$realurlConfiguration = array();
+	}
+
+	$realurlModuleIcon = ((!isset($realurlConfiguration['moduleIcon']) || $realurlConfiguration['moduleIcon'] == 0) ? 'Module.svg' :
+		($realurlConfiguration['moduleIcon'] == 1 ? 'Module2.svg' : 'Module3.svg')
+	);
+
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+		'DmitryDulepov.Realurl',
+		'web',
+		'realurl',
+		'',
+		array(
+			'Overview' => 'index',
+			'Aliases' => 'index,edit,delete,deleteAll',
+			'UrlCache' => 'index,delete,deleteAll,flush',
+			'PathCache' => 'index,delete',
+		),
+		array(
+			'access' => 'user,group',
+			'icon' => 'EXT:realurl/Resources/Public/Icons/' . $realurlModuleIcon,
+			'labels' => 'LLL:EXT:realurl/Resources/Private/Language/locallang.xlf',
+		)
+	);
+
+	unset($realurlConfiguration, $realurlModuleIcon);
 }
 
 TYPO3\CMS\Core\Utility\ExtensionManagementUtility::loadNewTcaColumnsConfigFiles();

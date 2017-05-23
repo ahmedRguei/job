@@ -1,4 +1,3 @@
-<INCLUDE_TYPOSCRIPT: source="DIR: ./AdditionalSetup" extensions="t3s">
 plugin.tx_naderioprovider {
 	view {
 		templateRootPaths.0 = {$plugin.tx_naderioprovider.view.templateRootPaths.0}
@@ -21,29 +20,5 @@ plugin.tx_naderioprovider {
 	}
 	mvc {
 		#callDefaultActionIfActionCantBeResolved = 1
-	}
-
-}
-lib.connect = COA_INT
-lib.connect {
-	## Login link (shown if FE user is NOT logged in)
-	10 = TEXT
-	10 {
-		value = Login
-		typolink {
-			parameter = 1
-		}
-		if.isFalse.data = TSFE:fe_user|user|username
-	}
-
-	## Logout link (shown if FE user IS logged in)
-	20 < .10
-	20.if.negate = 1
-	20 {
-		value = Logout
-		typolink {
-			additionalParams = &logintype=logout
-			ATagParams = class=""
-		}
 	}
 }

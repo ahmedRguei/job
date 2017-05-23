@@ -36,14 +36,14 @@ class Experience extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Start date of the experience
      * 
-     * @var \DateTime
+     * @var \string
      */
     protected $startDate = null;
 
     /**
      * The end of the experience
      * 
-     * @var \DateTime
+     * @var \string
      */
     protected $endDate = null;
 

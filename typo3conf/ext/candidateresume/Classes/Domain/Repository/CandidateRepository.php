@@ -34,18 +34,18 @@ class CandidateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->setLimit(7);
         return $query->execute();
     }
-    public function findByName($name, $skills, $location)
+    public function findByName($name, $title, $skills)
     {
         $query = $this->createQuery();
-        $query->matching(
+        $constraints[] = $query->logicalAnd(
             $query->logicalOr(
                 $query->like('firstName', '%'.$name.'%'),
                 $query->like('lastName', '%'.$name.'%')
             ),
-            $query->logicalAnd(
-                $query->like('address', '%'.$location.'%')
-            )
+            $query->like('professionalTitle', '%'.$title.'%'),
+            $query->like('acquiredSkills', '%'.$skills.'%')
         );
+        $query->matching($query->logicalAnd($constraints));
         return $query->execute();
     }
 }

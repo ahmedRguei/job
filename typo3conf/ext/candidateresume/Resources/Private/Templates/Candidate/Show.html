@@ -11,21 +11,12 @@
         <div id="content-area">
           <!-- buttons, add and list -->
           <div id="loadMore">
-            <f:link.action action="list" class="load-more">
-              <i class="fa fa-users"></i> List
-            </f:link.action>
-            <f:link.action action="new" class="load-more">
-              <i class="fa fa-user"></i> Add
-            </f:link.action>
-            <f:link.action action="edit" arguments="{candidate: candidate}" class="load-more ">
-              <i class="fa fa-edit"></i> Edit
-            </f:link.action>
+            <f:link.action action="list" class="load-more"> <i class="fa fa-users"></i> List </f:link.action>
+            <f:link.action action="new" class="load-more"> <i class="fa fa-user"></i> Add </f:link.action>
           </div><!-- /buttons, add and list -->
-          <div class="box">
-            <!-- candidate personnel infos -->
-            <f:render partial="Candidate/Properties" arguments="{candidate:candidate}" />
-            <!-- /candidate personnel infos -->
-          </div>
+          <!-- candidate personnel infos -->
+          <f:render partial="Candidate/Properties" arguments="{candidate:candidate}" />
+          <!-- /candidate personnel infos -->
           <!-- candidate personnel skills experiences langueges ... -->
           <f:render partial="Candidate/Details" arguments="{candidate: candidate, educations:educations, experiences:experiences, skills:skills, languages:languages, resumefile:resumefile}" />
           <!-- /candidate personnel skills experiences langueges ... -->

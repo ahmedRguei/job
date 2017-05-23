@@ -364,3 +364,11 @@ FileETag None
 
 
 # Add your own rules here.
+
+RewriteEngine On
+RewriteRule ^typo3$ - [L]
+RewriteRule ^typo3/.*$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule .* index.php

@@ -4,8 +4,6 @@
             <li><div data-toggle="tab" class="margin-10">Informations</div></li>
             <li><div data-toggle="tab" class="margin-10">Educations</div></li>
             <li class="active"><a href="#experiences" data-toggle="tab">Experiences</a></li>
-            <li><div data-toggle="tab" class="margin-10">Skills</div></li>
-            <li><div data-toggle="tab" class="margin-10">Languages</div></li>
         </ul>
     </div>
     <div class="tab-content">
@@ -25,7 +23,6 @@
                         </div>
                     </div>
                 </div>
-                <f:form.upload name="file" id="pdf" class=""/>
                 <div class="col-sm-5 col-sm-offset-1">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="material-icons">clear_all</i></span>
@@ -99,9 +96,7 @@
             <f:link.action action="new" controller="Education" arguments="{candidate : candidate}" class="btn btn-default" title="Go to add educations">
                 <i class="fa fa-angle-double-left" aria-hidden="true"></i>
             </f:link.action>
-            <f:link.action action="new" controller="Skill" arguments="{candidate : candidate}" class="btn btn-default" title="Go to add skills">
-                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            </f:link.action>
+            <f:link.action action="show" controller="Candidate" arguments="{candidate : candidate}" class="btn btn-default">Done !</f:link.action>
         </div>
         <div class="clearfix"></div>
     </div>

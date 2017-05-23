@@ -9,17 +9,17 @@ call_user_func(
             'Softtodo.Candidateresume',
             'Candidateresume',
             [
-                'Candidate' => 'list, show, create, new, edit, update, delete, search, upload, updateAjax, updateAcquiredSkills, updateSpokenLanguges, uploadFile',
+                'Candidate' => 'list, show, create, new, edit, update, delete, search, upload, updateAjax, updateAcquiredSkills, updateSpokenLanguges, uploadFile, updateInfoAjax',
                 'Education' => 'list, show, create, new, edit, update, delete, createAjax',
-                'Experience' => 'list, show, create, new, edit, update, delete',
+                'Experience' => 'list, show, create, new, edit, update, delete, createAjax, deleteAjax',
                 'Language' => 'list, show, create, new, edit, update, delete',
                 'Skill' => 'list, show, create, new, edit, update, delete',
             ],
             // non-cacheable actions
             [
-                'Candidate' => 'list, show, create, new, edit, update, delete, search, upload, updateAjax, updateAcquiredSkills, updateSpokenLanguges, uploadFile',
+                'Candidate' => 'list, show, create, new, edit, update, delete, search, upload, updateAjax, updateAcquiredSkills, updateSpokenLanguges, uploadFile, updateInfoAjax',
                 'Education' => 'list, show, create, new, edit, update, delete, createAjax',
-                'Experience' => 'list, show, create, new, edit, update, delete',
+                'Experience' => 'list, show, create, new, edit, update, delete, createAjax, deleteAjax',
                 'Language' => 'list, show, create, new, edit, update, delete',
                 'Skill' => 'list, show, create, new, edit, update, delete',
             ]

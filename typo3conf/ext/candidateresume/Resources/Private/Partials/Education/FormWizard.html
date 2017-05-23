@@ -4,8 +4,6 @@
             <li><div data-toggle="tab" class="margin-10">Informations</div></li>
             <li class="active"><a href="#educations" data-toggle="tab">Educations</a></li>
             <li><div data-toggle="tab" class="margin-10">Experiences</div></li>
-            <li><div data-toggle="tab" class="margin-10">Skills</div></li>
-            <li><div data-toggle="tab" class="margin-10">Languages</div></li>
         </ul>
     </div>
     <div class="tab-content">
@@ -61,7 +59,7 @@
                                     <f:translate key="tx_candidateresume_domain_model_education.from_date" />
                                     <span class="required">(required)</span>
                                 </label>
-                                <f:form.textfield property="fromDate" id="fromDate" class="form-control" value="{education.fromDate->f:format.date()}" />
+                                <f:form.textfield property="fromDate" id="fromDate" class="form-control date-picker" value="{education.fromDate}" />
                             </div>
                         </div>
                     </div><!-- /fromDate -->
@@ -74,7 +72,7 @@
                                     <f:translate key="tx_candidateresume_domain_model_education.to_date" />
                                     <span class="required">(required)</span>
                                 </label>
-                                <f:form.textfield property="toDate" id="toDate" class="form-control" value="{education.toDate->f:format.date()}" />
+                                <f:form.textfield property="toDate" id="toDate" class="form-control date-picker" value="{education.toDate}" />
                             </div>
                         </div>
                     </div><!-- /toDate -->
@@ -87,7 +85,7 @@
                         <f:for each="{candidate.educations}" as="education">
                             <li class="list-group-item">
                                 {education.school}, {education.degree}, {education.fieldStudy}
-                                <span class="text-muted">({education.fromDate -> f:format.date()} - {education.toDate -> f:format.date()})</span></li>
+                                <span class="text-muted">({education.fromDate} - {education.toDate})</span></li>
                         </f:for>
                     </div>
                 </div>
@@ -108,7 +106,6 @@
         </div>
         <div class="clearfix"></div>
     </div>
-
     <script type="text/javascript">
         $(document).ready(function(){
             $('#educationsubmit').click(function(){
@@ -119,7 +116,6 @@
                     $.post(ajaxURL, form.serialize(), function(response) {
                         var items = [];
                         $.each(response, function(key, val) {
-                            console.log(val);
                             items.push('<li class="list-group-item">' + val.school + ', ' + val.degree + ', ' + val.fieldstudy + ' <span class="text-muted">(' + val.fromdate + ' - ' + val.todate + ')</span>' + '</li>');
                         });
                         $('#educationslist').html(items.reverse().join(''));

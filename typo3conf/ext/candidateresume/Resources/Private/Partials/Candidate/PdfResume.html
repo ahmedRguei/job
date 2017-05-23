@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+    <div class="summary-box" id="pdfresume">
+        <h4>
+            <i class="fa fa-file-pdf-o color-pink" aria-hidden="true"></i> Resume
+            <i class="fa fa-edit color-bleu-fa pull-right pointer" aria-hidden="true" onclick="showResumeForm();"></i>
+            <i id="showResumeFa" class="fa fa-eye color-pink pull-right pointer" aria-hidden="true" onclick="showResume();"></i>
+        </h4>
+        <div class="col-md-12 <f:if condition='{resumefile.identifier}'>hidden</f:if>" id="formPdfResume">
+            <f:form action="upload" enctype="multipart/form-data" controller="Candidate" name="candidate" object="{candidate}" >
+                <div class="col-sm-6 text-center">
+                    <f:form.upload name="resmue" class="form-control" />
+                </div>
+                <div class="col-sm-6 text-center">
+                    <f:form.submit value="Save" class="btn btn-primary btn-md" />
+                </div>
+            </f:form>
+        </div>
+        <f:if condition="{resumefile.identifier}">
+            <iframe src="fileadmin{resumefile.identifier}" id="pdfresumme" style="width:100%;" frameborder="0"></iframe>
+        </f:if>
+    </div>
+</html>

@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+    <div class="skills-box">
+        <h4><i class="fa fa-globe color-pink" aria-hidden="true"></i> Languages</h4>
+        <div class="progress-box">
+            <f:for each="{languages}" as="language">
+                <strong class="title"><i class="fa fa-globe" aria-hidden="true"></i> {language.title}</strong>
+                <div class="">
+                    {language.proficiency}
+                </div>
+            </f:for>
+            <f:form id="updateSpokenLanguges" action="updateSpokenLanguges" controller="Candidate" name="candidate" object="{candidate}" >
+                <div class="col-sm-12">
+                    <f:form.textfield property="spokenLanguage" id="spokenLanguage" value="{candidate.spokenLanguage}" />
+                </div>
+                <div class="col-sm-12 text-center">
+                    <f:form.submit id="spokenlangugessubmit" value="Save" class="btn btn-primary pull-right" />
+                </div>
+            </f:form>
+        </div>
+    </div>
+</html>

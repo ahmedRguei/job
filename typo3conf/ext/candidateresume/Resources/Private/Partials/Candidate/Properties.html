@@ -1,38 +1,79 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <!-- candidate details -->
-<div class="row">
-	<div class="col-md-2 text-center">
-		<img src="typo3conf/ext/candidateresume/Resources/Public/Images/person.png" style="width: 100px;" alt="img">
-	</div>
-	<div class="col-md-10">
-		<h2 class="text-center">
-			<f:format.case mode="capital">{candidate.firstName}</f:format.case>
-			<f:format.case mode="capital">{candidate.lastName}</f:format.case>
-			-
-			<f:format.case mode="capital">{candidate.professionalTitle}</f:format.case>
-		</h2>
-		<div class="col-md-5">
-			<i class="fa fa-map-marker color-pink"></i> <i>{candidate.address}, {candidate.city}</i>
+<div class="box">
+	<div class="row">
+		<i class="fa fa-edit color-bleu-fa pull-right pointer" aria-hidden="true" onclick="ediInfosCandidat();"></i>
+		<div class="col-md-2 text-center" style="margin-top: 10px;">
+			<img src="typo3conf/ext/candidateresume/Resources/Public/Images/person.png" style="width: 100px;" alt="img">
 		</div>
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			<i class="fa fa-phone color-pink"></i> {candidate.phone}
+		<div class="col-md-10" id="infoscandidats">
+			<h2 class="text-center">
+				<b id="candidatfirstname"><f:format.case mode="capital">{candidate.firstName}</f:format.case></b>
+				<b id="candidatlastname"><f:format.case mode="capital">{candidate.lastName}</f:format.case></b>
+				-
+				<b id="candidatprofessionaltitle"><f:format.case mode="capital">{candidate.professionalTitle}</f:format.case></b>
+			</h2>
+			<div class="col-md-5">
+				<i class="fa fa-map-marker color-pink"></i>
+				<i id="candidataddress">{candidate.address}</i>, <i id="candidatcity">{candidate.city}</i>
+			</div>
+			<div class="col-md-3 col-sm-6 col-xs-12">
+				<i class="fa fa-phone color-pink"></i> <i id="candidatphone">{candidate.phone}</i>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<i class="fa fa-envelope-o color-pink"></i> <i id="candidatemail">{candidate.email}</i>
+			</div>
 		</div>
-		<div class="col-md-4 col-sm-6 col-xs-12">
-			<i class="fa fa-envelope-o color-pink"></i> {candidate.email}
+		<div class="col-md-10 hidden" id="editinfoscandidats">
+			<f:form id="updateInfo" action="updateInfoAjax" controller="Candidate" name="candidate" object="{candidate}" >
+				<div class="col-sm-4">
+					<label class="control-label" for="firstName"><f:translate key="tx_candidateresume_domain_model_candidate.first_name"/></label>
+					<f:form.textfield property="firstName" id="firstName" value="{candidate.firstName}" class="form-control"/>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label" for="lastName"><f:translate key="tx_candidateresume_domain_model_candidate.last_name"/></label>
+					<f:form.textfield property="lastName" id="lastname" value="{candidate.lastName}" class="form-control"/>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label" for="professionalTitle"><f:translate key="tx_candidateresume_domain_model_candidate.professional_title"/></label>
+					<f:form.textfield property="professionalTitle" id="professionalTitle" value="{candidate.professionalTitle}" class="form-control"/>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label" for="addresss"><f:translate key="tx_candidateresume_domain_model_candidate.address"/></label>
+					<f:form.textfield property="address" id="addresss" value="{candidate.address}" class="form-control"/>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label" for="city"><f:translate key="tx_candidateresume_domain_model_candidate.city"/></label>
+					<f:form.textfield property="city" id="city" value="{candidate.city}" class="form-control"/>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label" for="linkedin"><f:translate key="tx_candidateresume_domain_model_candidate.linkedin"/></label>
+					<f:form.textfield property="linkedin" id="linkedin" value="{candidate.linkedin}" class="form-control"/>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label" for="phone"><f:translate key="tx_candidateresume_domain_model_candidate.phone"/></label>
+					<f:form.textfield property="phone" id="phone" value="{candidate.phone}" class="form-control"/>
+				</div>
+				<div class="col-sm-6">
+					<label class="control-label" for="email"><f:translate key="tx_candidateresume_domain_model_candidate.email"/></label>
+					<f:form.textfield property="email" id="email" value="{candidate.email}" class="form-control"/>
+				</div>
+				<f:form.submit value="Save" id="infosubmit" class="btn btn-primary pull-right" />
+			</f:form>
 		</div>
-	</div>
-	<div class="company-social col-xs-12 text-center">
-		<ul>
-			<li>
-				<f:link.external uri="{candidate.linkedin}" target="_blank"><i class="fa fa-linkedin"></i></f:link.external>
-				<i class="color-pink">Linkedin account</i>
-			</li>
-			<li></li>
-			<li>
-				<a><i class="fa fa-file-pdf-o pointer" onclick="showResume();"></i></a>
-				<i class="color-pink">View the resume file</i>
-			</li>
-		</ul>
-	</div>
-</div><!-- /candidate details -->
+		<div class="company-social col-xs-12 text-center" id="social-resume">
+			<ul>
+				<li>
+					<f:link.external uri="https://www.linkedin.com/{candidate.linkedin}" target="_blank"><i class="fa fa-linkedin"></i></f:link.external>
+					<i class="color-pink">Linkedin account</i>
+				</li>
+				<li></li>
+				<li>
+					<a><i class="fa fa-file-pdf-o pointer" onclick="showResume();"></i></a>
+					<i class="color-pink">View the resume file</i>
+				</li>
+			</ul>
+		</div>
+	</div><!-- /candidate details -->
+</div>
 </html>
