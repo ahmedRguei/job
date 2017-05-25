@@ -84,6 +84,19 @@ class LanguageController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
 
     /**
+     * action add
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Language $newLanguage
+     * @return void
+     */
+    public function addAction(\Softtodo\Candidateresume\Domain\Model\Language $newLanguage)
+    {
+        $this->languageRepository->add($newLanguage);
+        $json[$newLanguage->getUid()] = array('addedLanguage' => $newLanguage->getTitle());
+        return json_encode($json);
+    }
+
+    /**
      * action edit
      * 
      * @param \Softtodo\Candidateresume\Domain\Model\Language $language

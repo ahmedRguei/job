@@ -107,34 +107,6 @@
         <div class="clearfix"></div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#educationsubmit').click(function(){
-                if( $('#school').val() != '' &&  $('#degree').val() != '' &&  $('#fieldStudy').val() != '' )
-                {
-                    var ajaxURL = '<f:uri.action action="createAjax" controller="Education" pageType="99" arguments="{candidate : candidate}" noCacheHash="1" />';
-                    var form = $('#newEducation');
-                    $.post(ajaxURL, form.serialize(), function(response) {
-                        var items = [];
-                        $.each(response, function(key, val) {
-                            items.push('<li class="list-group-item">' + val.school + ', ' + val.degree + ', ' + val.fieldstudy + ' <span class="text-muted">(' + val.fromdate + ' - ' + val.todate + ')</span>' + '</li>');
-                        });
-                        $('#educationslist').html(items.reverse().join(''));
-                        $('#school').val('');
-                        $('#fieldStudy').val('');
-                        $('#degree').val('');
-                        $('#school').removeClass('is-empty-input');
-                        $('#fieldStudy').removeClass('is-empty-input');
-                        $('#degree').removeClass('is-empty-input');
-                        notification('minimalist', 'Saved !','Education added');
-                    });
-                    return false;
-                }else{
-                    $('#school').addClass('is-empty-input');
-                    $('#fieldStudy').addClass('is-empty-input');
-                    $('#degree').addClass('is-empty-input');
-                    notification('danger', 'Error !','<br>Try to complete all informations');
-                }
-            });
-        });
+        var ajaxURLAddEducation = '<f:uri.action action="createAjax" controller="Education" pageType="99" arguments="{candidate : candidate}" noCacheHash="1" />';
     </script>
 </html>

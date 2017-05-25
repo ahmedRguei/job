@@ -7,7 +7,6 @@
             };
         }
         ;
-
         window.inputTags.methods = {
             tags: function (element, callback) {
                 if (element) {
@@ -494,7 +493,8 @@
                             self.$autocomplete
                                 .css({
                                     'left': self.$input[0].offsetLeft,
-                                    'minWidth': self.$input.width()
+                                    'minWidth': self.$input.width(),
+                                    'overflow': 'auto'
                                 })
                                 .insertAfter(self.$input);
 
@@ -740,9 +740,10 @@
     $.fn.inputTags.defaults = {
         tags: [],
         keys: [],
-        minLength: 2,
-        maxLength: 100,
-        max:100,
+        minLength: 1,
+        maxLength: 1000,
+        max: 1000,
+        maxTags: 1000,
         email: false,
         only: true,
         init: false,

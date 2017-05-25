@@ -29,7 +29,6 @@ class Skill extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Level of the skill
      * 
      * @var string
-     * @validate NotEmpty
      */
     protected $level = '';
 

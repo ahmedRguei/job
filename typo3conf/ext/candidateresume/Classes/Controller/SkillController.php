@@ -82,6 +82,18 @@ class SkillController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $this->skillRepository->add($newSkill);
         $this->redirect('new', 'Skill', 'Candidateresume', array('candidate' => $candidate) );
     }
+    /**
+     * action add
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Skill $newSkill
+     * @return void
+     */
+    public function addAction(\Softtodo\Candidateresume\Domain\Model\Skill $newSkill)
+    {
+        $this->skillRepository->add($newSkill);
+        $json[$newSkill->getUid()] = array('addedSkill' => $newSkill->getTitle());
+        return json_encode($json);
+    }
 
     /**
      * action edit

@@ -1,6 +1,6 @@
 //used to hide the flash Message after insert or update the ibformations of candidate
 setTimeout(function() {
-    $('.typo3-messages').fadeOut(10000);
+    $('.typo3-messages').fadeOut(3000);
 });
 //function to pull a notification
 function notification(type, title, message){
@@ -152,7 +152,6 @@ jQuery(document).ready(function($) {
     $('.date-picker').datepicker();
     //spoken languages save ajax
     var tagslang = [];
-    var autolang = ['English', 'Deutch', 'French', 'Arabic', 'Italiano', 'Spanish', 'Chinese'];
     if($('#spokenLanguage').length){
         initTags('Spoken Languages', tagslang, autolang, 'spokenLanguage');
     }
@@ -164,7 +163,6 @@ jQuery(document).ready(function($) {
         }
     });
     //acquired Skills save ajax
-    var autoskills = ['HTML', 'CSS3', 'JS', 'Jquery', 'Typo3', 'Wordpress', 'Symfony2'];
     if($('#acquiredSkills').length){
         initTags('Acquired Skills', tagslang, autoskills, 'acquiredSkills');
     }

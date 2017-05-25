@@ -32,6 +32,9 @@
             <i class="fa fa-edit color-bleu-fa pull-right pointer" aria-hidden="true" onclick="disableIterviewDetails();"></i>
         </h4>
         <div style="padding: 20px;">
+            <script type="text/javascript">
+                var ajaxURLUpdateInterviewDetails = '<f:uri.action action="updateAjax" controller="Candidate" pageType="98" arguments="{candidate : candidate}" noCacheHash="1" />';
+            </script>
             <f:form id="updateInterview" action="updateAjax" controller="Candidate" name="candidate" object="{candidate}" >
                 <span>
                     <label for="availability1"><i class="fa fa-clock-o color-bleu-fa" aria-hidden="true"></i> Availibility</label> <br />

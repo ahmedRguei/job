@@ -52,28 +52,6 @@ class ExperienceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
     protected $persistenceManager;
 
     /**
-     * action list
-     * 
-     * @return void
-     */
-    public function listAction()
-    {
-        $experiences = $this->experienceRepository->findAll();
-        $this->view->assign('experiences', $experiences);
-    }
-
-    /**
-     * action show
-     * 
-     * @param \Softtodo\Candidateresume\Domain\Model\Experience $experience
-     * @return void
-     */
-    public function showAction(\Softtodo\Candidateresume\Domain\Model\Experience $experience)
-    {
-        $this->view->assign('experience', $experience);
-    }
-
-    /**
      * action new
      *
      * @param \Softtodo\Candidateresume\Domain\Model\Candidate $candidate
@@ -177,6 +155,7 @@ class ExperienceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
         $this->experienceRepository->remove($experience);
         $this->redirect('show', 'Candidate', 'Candidateresume', array('candidate' => $candidate) );
     }
+
     /**
      * action deleteAjax
      *
@@ -190,57 +169,5 @@ class ExperienceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
             'uid' => $experience->getUid()
         );
         return json_encode($json);
-    }
-
-    protected function createFileReferenceFromFalFileObject(\TYPO3\CMS\Core\Resource\File $file, $resourcePointer = null, $obj)
-    {
-        $fileObject = $this->resourceFactory->getFileObject($file->getUid());
-         DebuggerUtility::var_dump($fileObject->getUid());
-         exit;
-
-        $newId = uniqid('NEW_');
-        $data = [];
-        $data['sys_file_reference'][$newId] = [
-            'table_local' => 'sys_file',
-            'uid_local' => $fileObject->getUid(),
-            'tablenames' => 'your_table_name',
-            'uid_foreign' => $obj->getUid(),
-            'fieldname' => 'your_field_name',
-            'pid' => $obj->getPid(),
-        ];
-        $data['your_table_name'][$obj->getUid()] = [
-            'image' => $newId,
-        ];
-        // Get an instance of the DataHandler and process the data
-        /** @var DataHandler $dataHandler */
-        $dataHandler = GeneralUtility::makeInstance(
-            'TYPO3\CMS\Core\DataHandling\DataHandler'
-        );
-        $dataHandler->start($data, []);
-        $dataHandler->process_datamap();
-
-        if (count($dataHandler->errorLog) !== 0) {
-            echo 'error !!!';
-            exit;
-        }
-    }
-
-
-    /**
-     *
-     * @var array $fileData
-     *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     */
-    private function uploadFile($fileData, $targetNameOfFile, $obj) {
-        $storageRepository =
-            \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\StorageRepository');
-        $storage = $storageRepository->findByUid(1); # Fileadmin = 1
-        // $saveFolder = $storage->getFolder($this->settings['uploadFolder']);
-        $saveFolder = $storage->getFolder('content');
-        $fileObject = $storage->addFile($fileData, $saveFolder, $targetNameOfFile);
-        $repositoryFileObject = $storage->getFile($fileObject->getIdentifier());
-        $this->createFileReferenceFromFalFileObject($repositoryFileObject, null, $obj);
-        return $repositoryFileObject;
     }
 }

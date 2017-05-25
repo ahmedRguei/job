@@ -6,35 +6,17 @@
         </h4>
         <!-- add -->
         <div id="addeducation" class="row hidden">
+            <script type="text/javascript">
+                var ajaxURLAddEducation = '<f:uri.action action="createAjax" controller="Education" pageType="99" arguments="{candidate : candidate}" noCacheHash="1" />';
+            </script>
             <f:form id="newEducation" action="createAjax" controller="Education" name="newEducation" object="{newEducation}" arguments="{candidate : candidate}">
-                <div class="col-md-6">
-                    <label for="school"><f:translate key="tx_candidateresume_domain_model_education.school" /></label>
-                    <f:form.textfield property="school" id="school" class="form-control"/>
-                </div>
-                <div class="col-md-6">
-                    <label for="degree"><f:translate key="tx_candidateresume_domain_model_education.degree" /></label>
-                    <f:form.textfield property="degree" id="degree" class="form-control"/>
-                </div>
-                <div class="col-md-12">
-                    <label for="fieldStudy"><f:translate key="tx_candidateresume_domain_model_education.field_study" /></label>
-                    <f:form.textfield property="fieldStudy" id="fieldStudy" class="form-control"/>
-                </div>
-                <div class="col-md-6">
-                    <label for="fromDate"><f:translate key="tx_candidateresume_domain_model_education.from_date" /></label>
-                    <f:form.textfield property="fromDate" id="fromDate" class="form-control date-picker" />
-                </div>
-                <div class="col-md-6">
-                    <label for="toDate"><f:translate key="tx_candidateresume_domain_model_education.to_date" /></label>
-                    <f:form.textfield property="toDate" id="toDate" class="form-control date-picker" />
-                </div>
+                <f:render partial="Education/FormFields" />
                 <div class="pull-right">
                     <input type="button" class="btn  btn-fill btn-primary btn-wd" id="educationsubmit" value="Save" />
                 </div>
             </f:form>
-        </div>
-        <script type="text/javascript">var ajaxURL = '<f:uri.action action="createAjax" controller="Education" pageType="99" arguments="{candidate : candidate}" noCacheHash="1" />';</script>
-        <script type="text/javascript" src="typo3conf/ext/candidateresume/Resources/Public/Js/ajax.js"></script>
-        <!-- /add -->
+        </div><!-- /add -->
+        <!-- list -->
         <div id="diveducationslist">
             <f:for each="{educations}" as="education">
                 <!-- Button delete : remove education -->
@@ -54,40 +36,11 @@
                 <!-- edit -->
                 <div id="editcandidateducations{education.uid}" class="outer hidden" style="padding-top: 10px;border-top: 1px solid #4b74a7;">
                     <f:form id="formsubmiteducation{education.uid}" action="update" controller="Education" name="education" object="{education}" arguments="{education : education , candidate : candidate}" >
-                        <div class="col-md-6">
-                            <label for="school">
-                                <f:translate key="tx_candidateresume_domain_model_education.school" />
-                            </label>
-                            <f:form.textfield property="school" id="school" value="{education.school}" class="form-control"/>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="degree">
-                                <f:translate key="tx_candidateresume_domain_model_education.degree" />
-                            </label>
-                            <f:form.textfield property="degree" id="degree" value="{education.degree}" class="form-control"/>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="fieldStudy">
-                                <f:translate key="tx_candidateresume_domain_model_education.field_study" />
-                            </label>
-                            <f:form.textfield property="fieldStudy" id="fieldStudy" value="{education.fieldStudy}" class="form-control"/>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="fromDate">
-                                <f:translate key="tx_candidateresume_domain_model_education.from_date" />
-                            </label>
-                            <f:form.textfield property="fromDate" id="fromDate" value="{education.fromDate}" class="form-control date-picker" />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="toDate">
-                                <f:translate key="tx_candidateresume_domain_model_education.to_date" />
-                            </label>
-                            <f:form.textfield property="toDate" id="toDate" class="form-control date-picker" value="{education.toDate}" />
-                        </div>
-                        <f:form.submit  id="submiteducation{education.uid}" class="btn btn-primary pull-right" value="Save" />
+                        <f:render partial="Education/FormFields" arguments="{education: education}" />
+                        <f:form.submit id="submiteducation{education.uid}" class="btn btn-primary pull-right" value="Save" />
                     </f:form>
                 </div><!-- /edit -->
             </f:for>
-        </div>
+        </div><!-- /list -->
     </div>
 </html>

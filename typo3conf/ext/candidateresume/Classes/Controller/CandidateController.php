@@ -26,6 +26,22 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $candidateRepository = null;
 
     /**
+     * languageRepository
+     *
+     * @var \Softtodo\Candidateresume\Domain\Repository\LanguageRepository
+     * @inject
+     */
+    protected $languageRepository = null;
+
+    /**
+     * skillRepository
+     *
+     * @var \Softtodo\Candidateresume\Domain\Repository\SkillRepository
+     * @inject
+     */
+    protected $skillRepository = null;
+
+    /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @inject
      */
@@ -45,6 +61,12 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     {
         $candidates = $this->candidateRepository->findAll();
         $this->view->assign('candidates', $candidates);
+        //list of available languages
+        $languages = $this->languageRepository->findAll();
+        $this->view->assign('languages', $languages);
+        //list of available skills
+        $skills = $this->skillRepository->findAll();
+        $this->view->assign('skills', $skills);
     }
 
     /**
@@ -59,18 +81,21 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->view->assign('candidate', $candidate);
         $numberOfLanguages = count(explode(',', $candidate->getSpokenLanguage()));
         $this->view->assign('numberOfLanguages', $numberOfLanguages);
-        $this->view->assign('skills', $candidate->getSkills());
+        $skills = $this->skillRepository->findAll();
+        $this->view->assign('skills', $skills);
         $this->view->assign('experiences', $candidate->getExperiences());
-        $this->view->assign('languages', $candidate->getLanguages());
+        $languages = $this->languageRepository->findAll();
+        $this->view->assign('languages', $languages);
         $this->view->assign('educations', $candidate->getEducations());
         //similar candidates
-        $similarCandidates = $this->candidateRepository->findSimilarCandidates();
+        $similarCandidates = $this->candidateRepository->findSimilarCandidates( $candidate->getUid(), $candidate->getAcquiredSkills() );
         $this->view->assign('similarCandidates', $similarCandidates);
         //resume file; gotten from the table sys_file
         if($candidate->getResmue() > 0){
             $fileObject = $this->resourceFactory->retrieveFileOrFolderObject( 'file:'.$candidate->getResmue() );
             $this->view->assign('resumefile', $fileObject);
         }
+
     }
 
     /**
@@ -80,10 +105,14 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function searchAction()
     {
-        if($this->request->hasArgument('search')){
+        if($this->request->hasArgument('search'))
+        {
             $search = $this->request->getArgument('search');
         }
         $candidates = $this->candidateRepository->findByName($search['name'], $search['title'], $search['skills']);
+        $this->view->assign('canname', $search['name']);
+        $this->view->assign('cantitle', $search['title']);
+        $this->view->assign('canskills', $search['skills']);
         $this->view->assign('candidates', $candidates);
     }
 
@@ -108,38 +137,11 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //begin : define the longitude and latitude automaticly
         $this->setLongitudeLatitude($newCandidate);
         //end : define the longitude and latitude automaticly
-
-        //$data = array();
-        //$fileName = $this->candidateRepository->registerUploadField($data, key($_FILES), 'tx_candidateresume_candidateresume[newCandidate][image]');
-
         $this->candidateRepository->add($newCandidate);
         $this->addFlashMessage('Candidate added');
         $this->persistenceManager->persistAll();
         $this->redirect('new', 'Education', 'Candidateresume', array('candidate' => $newCandidate) );
     }
-
-    /**
-     * action setLongitudeLatitude
-     *
-     * @param \Softtodo\Candidateresume\Domain\Model\Candidate $Candidate
-     * @return void
-     */
-    public function setLongitudeLatitude(\Softtodo\Candidateresume\Domain\Model\Candidate $Candidate)
-    {
-        // We get the JSON results from this request
-        $geo = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode( $Candidate->getAddress() ).'&sensor=false');
-        // We convert the JSON to an array
-        $geo = json_decode($geo, true);
-        // If everything is cool
-        if ($geo['status'] = 'OK') {
-            // We set our values
-            $latitude = $geo['results'][0]['geometry']['location']['lat'];
-            $longitude = $geo['results'][0]['geometry']['location']['lng'];
-        }
-        $Candidate->setLongitude($latitude);
-        $Candidate->setLatittude($longitude);
-    }
-
 
     /**
      * action edit
@@ -164,7 +166,6 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         //begin : update the longitude and latitude automaticly
         $this->setLongitudeLatitude($candidate);
         //end : update the longitude and latitude automaticly
-        //$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->candidateRepository->update($candidate);
         $this->redirect('show', 'Candidate', 'Candidateresume', array('candidate' => $candidate) );
     }
@@ -178,9 +179,7 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function updateAcquiredSkillsAction(\Softtodo\Candidateresume\Domain\Model\Candidate $candidate)
     {
         $this->candidateRepository->update($candidate);
-        $json[$candidate->getUid()] = array(
-            'acquiredSkills' => $candidate->getAcquiredSkills()
-        );
+        $json[$candidate->getUid()] = array('acquiredSkills' => $candidate->getAcquiredSkills());
         return json_encode($json);
     }
 
@@ -193,12 +192,9 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function updateSpokenLangugesAction(\Softtodo\Candidateresume\Domain\Model\Candidate $candidate)
     {
         $this->candidateRepository->update($candidate);
-        $json[$candidate->getUid()] = array(
-            'spokenLanguage' => $candidate->getSpokenLanguage()
-        );
+        $json[$candidate->getUid()] = array('spokenLanguage' => $candidate->getSpokenLanguage());
         return json_encode($json);
     }
-
 
     /**
      * action updateAjax
@@ -253,9 +249,30 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function deleteAction(\Softtodo\Candidateresume\Domain\Model\Candidate $candidate)
     {
-        $this->addFlashMessage('The object was deleted. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->candidateRepository->remove($candidate);
         $this->redirect('list');
+    }
+
+    /**
+     * action setLongitudeLatitude
+     *
+     * @param \Softtodo\Candidateresume\Domain\Model\Candidate $Candidate
+     * @return void
+     */
+    public function setLongitudeLatitude(\Softtodo\Candidateresume\Domain\Model\Candidate $Candidate)
+    {
+        // We get the JSON results from this request
+        $geo = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode( $Candidate->getAddress() ).'&sensor=false');
+        // We convert the JSON to an array
+        $geo = json_decode($geo, true);
+        // If everything is cool
+        if ($geo['status'] = 'OK') {
+            // We set our values
+            $latitude = $geo['results'][0]['geometry']['location']['lat'];
+            $longitude = $geo['results'][0]['geometry']['location']['lng'];
+        }
+        $Candidate->setLongitude($latitude);
+        $Candidate->setLatittude($longitude);
     }
 
     /**
@@ -264,7 +281,8 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @param \Softtodo\Candidateresume\Domain\Model\Candidate $candidate
      * @return void
      */
-    public function uploadAction(\Softtodo\Candidateresume\Domain\Model\Candidate $candidate) {
+    public function uploadAction(\Softtodo\Candidateresume\Domain\Model\Candidate $candidate)
+    {
         $data = array();
         $namespace = key($_FILES);
         // Register every upload field from the form:
@@ -284,12 +302,12 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @param string $targetDirectory
      * @return integer
      */
-    protected function registerUploadField(array &$data, $namespace, $fieldName, $targetDirectory = '1:/content/') {
+    protected function registerUploadField(array &$data, $namespace, $fieldName, $targetDirectory = '1:/content/')
+    {
         if (!isset($data['upload'])) {
             $data['upload'] = array();
         }
         $counter = count($data['upload']) + 1;
-
         $keys = array_keys($_FILES[$namespace]);
         foreach ($keys as $key) {
             $_FILES['upload_' . $counter][$key] = $_FILES[$namespace][$key][$fieldName];
@@ -305,11 +323,9 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $fileProcessor->init(array(), $GLOBALS['TYPO3_CONF_VARS']['BE']['fileExtensions']);
         $fileProcessor->setActionPermissions(array('addFile' => TRUE));
         $fileProcessor->dontCheckForUnique = $overwriteExistingFiles ? 1 : 0;
-
         // Actual upload
         $fileProcessor->start($data);
         $result = $fileProcessor->processData();
-
         // Do whatever you want with $result (array of File objects)
         foreach ($result['upload'] as $files) {
             /** @var \TYPO3\CMS\Core\Resource\File $file */

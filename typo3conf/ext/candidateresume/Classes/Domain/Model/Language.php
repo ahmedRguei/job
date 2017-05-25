@@ -29,7 +29,6 @@ class Language extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Proficiency
      * 
      * @var string
-     * @validate NotEmpty
      */
     protected $proficiency = '';
 

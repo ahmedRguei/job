@@ -28,14 +28,31 @@ class CandidateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $candidates = $query->execute();
         return $candidates;
     }
-    public function findSimilarCandidates()
+    public function findSimilarCandidates($uid, $skills)
     {
+        $skill = explode(",", $skills);
+        $skill[1] = !isset($skill[1]) ? 'a' : $skill[1] ;
+        $skill[2] = !isset($skill[2]) ? 'a' : $skill[2] ;
+
         $query = $this->createQuery();
-        $query->setLimit(7);
+        $constraints[] = $query->logicalAnd(
+            $query->like('acquiredSkills', '%'.$skill[0].'%'),
+            $query->like('acquiredSkills', '%'.$skill[1].'%'),
+            $query->like('acquiredSkills', '%'.$skill[2].'%')
+        );
+        $constraints[] = $query->logicalAnd(
+            $query->logicalNot(
+                $query->equals('uid', $uid)
+            )
+        );
+        $query->matching($query->logicalAnd($constraints));
         return $query->execute();
     }
     public function findByName($name, $title, $skills)
     {
+        $skill = explode(" ", $skills);
+        $skill[1] = !isset($skill[1]) ? 'a' : $skill[1] ;
+        $skill[2] = !isset($skill[2]) ? 'a' : $skill[2] ;
         $query = $this->createQuery();
         $constraints[] = $query->logicalAnd(
             $query->logicalOr(
@@ -43,7 +60,11 @@ class CandidateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $query->like('lastName', '%'.$name.'%')
             ),
             $query->like('professionalTitle', '%'.$title.'%'),
-            $query->like('acquiredSkills', '%'.$skills.'%')
+            $query->logicalOr(
+                $query->like('acquiredSkills', '%'.$skill[0].'%'),
+                $query->like('acquiredSkills', '%'.$skill[1].'%'),
+                $query->like('acquiredSkills', '%'.$skill[2].'%')
+            )
         );
         $query->matching($query->logicalAnd($constraints));
         return $query->execute();

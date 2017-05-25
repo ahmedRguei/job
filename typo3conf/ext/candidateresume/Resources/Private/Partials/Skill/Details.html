@@ -1,12 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
-    <div class="skills-box">
+<script type="text/javascript">
+    var ajaxURLUpdateAcquiredSkils = '<f:uri.action action="updateAcquiredSkills" controller="Candidate" pageType="97" arguments="{candidate : candidate}" noCacheHash="1" />';
+    var autoskills = [];
+</script>
+<div class="skills-box">
         <h4><i class="fa fa-code color-pink" aria-hidden="true"></i> Skills</h4>
         <div class="progress-box">
             <f:for each="{skills}" as="skill">
-                <strong class="title"><i class="fa fa-code" aria-hidden="true"></i> {skill.title} {skill.level}</strong>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 70%;"> <span> 70%</span> </div>
-                </div>
+                <script>autoskills.push('{skill.title}');</script>
             </f:for>
             <f:form id="updateAcquiredSkills" action="updateAcquiredSkills" controller="Candidate" name="candidate" object="{candidate}" >
                 <div class="col-sm-12">

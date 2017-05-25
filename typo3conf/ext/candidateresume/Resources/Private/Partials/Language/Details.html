@@ -1,12 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers" xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers" xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers">
+    <script type="text/javascript">
+        var ajaxURLUpdateSpokenLang = '<f:uri.action action="updateSpokenLanguges" controller="Candidate" pageType="96" arguments="{candidate : candidate}" noCacheHash="1" />';
+        var autolang = [];
+    </script>
     <div class="skills-box">
         <h4><i class="fa fa-globe color-pink" aria-hidden="true"></i> Languages</h4>
         <div class="progress-box">
             <f:for each="{languages}" as="language">
-                <strong class="title"><i class="fa fa-globe" aria-hidden="true"></i> {language.title}</strong>
-                <div class="">
-                    {language.proficiency}
-                </div>
+                <script>autolang.push('{language.title}');</script>
             </f:for>
             <f:form id="updateSpokenLanguges" action="updateSpokenLanguges" controller="Candidate" name="candidate" object="{candidate}" >
                 <div class="col-sm-12">

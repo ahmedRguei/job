@@ -12,16 +12,16 @@ call_user_func(
                 'Candidate' => 'list, show, create, new, edit, update, delete, search, upload, updateAjax, updateAcquiredSkills, updateSpokenLanguges, uploadFile, updateInfoAjax',
                 'Education' => 'list, show, create, new, edit, update, delete, createAjax',
                 'Experience' => 'list, show, create, new, edit, update, delete, createAjax, deleteAjax',
-                'Language' => 'list, show, create, new, edit, update, delete',
-                'Skill' => 'list, show, create, new, edit, update, delete',
+                'Language' => 'list, show, create, new, edit, update, delete, add',
+                'Skill' => 'list, show, create, new, edit, update, delete, add',
             ],
             // non-cacheable actions
             [
                 'Candidate' => 'list, show, create, new, edit, update, delete, search, upload, updateAjax, updateAcquiredSkills, updateSpokenLanguges, uploadFile, updateInfoAjax',
                 'Education' => 'list, show, create, new, edit, update, delete, createAjax',
                 'Experience' => 'list, show, create, new, edit, update, delete, createAjax, deleteAjax',
-                'Language' => 'list, show, create, new, edit, update, delete',
-                'Skill' => 'list, show, create, new, edit, update, delete',
+                'Language' => 'list, show, create, new, edit, update, delete, add',
+                'Skill' => 'list, show, create, new, edit, update, delete, add',
             ]
         );
         // wizards
@@ -46,3 +46,4 @@ call_user_func(
     },
     $_EXTKEY
 );
+

@@ -9,6 +9,7 @@ page.includeJS{
     js8 = typo3conf/ext/candidateresume/Resources/Public/Js/scripts.js
     js9 = typo3conf/ext/candidateresume/Resources/Public/Js/inputTags.jquery.js
     js10 = https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js
+    js12 = typo3conf/ext/candidateresume/Resources/Public/Js/ajax.js
 }
 page.includeJSFooter{
     js11 = https://maps.googleapis.com/maps/api/js?key=AIzaSyAlJ0N7UHEGQikAZDucUnnAHcOhUkhyJrU&callback=initMap

@@ -39,28 +39,6 @@ class EducationController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected $persistenceManager;
 
     /**
-     * action list
-     * 
-     * @return void
-     */
-    public function listAction()
-    {
-        $educations = $this->educationRepository->findAll();
-        $this->view->assign('educations', $educations);
-    }
-
-    /**
-     * action show
-     * 
-     * @param \Softtodo\Candidateresume\Domain\Model\Education $education
-     * @return void
-     */
-    public function showAction(\Softtodo\Candidateresume\Domain\Model\Education $education)
-    {
-        $this->view->assign('education', $education);
-    }
-
-    /**
      * action new
      *
      * @param \Softtodo\Candidateresume\Domain\Model\Candidate $candidate

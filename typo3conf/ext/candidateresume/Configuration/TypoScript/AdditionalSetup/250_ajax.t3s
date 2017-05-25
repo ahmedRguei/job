@@ -70,3 +70,27 @@ addExperinceCandidateAjax {
     }
     10 < tt_content.list.20.candidateresume_candidateresume
 }
+addLanguageAjax = PAGE
+addLanguageAjax {
+    typeNum = 93
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}
+addSkillAjax = PAGE
+addSkillAjax {
+    typeNum = 92
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        xhtml_cleaning = 0
+        admPanel = 0
+        debug = 0
+    }
+    10 < tt_content.list.20.candidateresume_candidateresume
+}

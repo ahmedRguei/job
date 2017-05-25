@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <aside id="content-area">
+        <!-- Button add : add candidate -->
+        <div id="loadMore">
+            <f:link.action action="new" class="load-more">
+                <i class="fa fa-user"></i> Add candidate
+            </f:link.action>
+        </div><!-- /Button add : add candidate -->
+        <div class="sidebar">
+            <div class="box">
+                <script>
+                    var ajaxURLAddlanguage = '<f:uri.action action="add" controller="Language" pageType="93" noCacheHash="1" />';
+                    var ajaxURLAddskill = '<f:uri.action action="add" controller="Skill" pageType="92" noCacheHash="1" />';
+                </script>
+                <h4 class="text-center color-bleu-fa"><i class="fa fa-globe"></i> Languages</h4>
+                <div id="thelanguages">
+                    <f:for each="{languages}" as="language">
+                        <div class="col-sm-6 ">{language.title}</div>
+                    </f:for>
+                </div>
+                <div class="col-md-12">
+                    <f:form id="newLanguageForm" name="newLanguage" action="add" controller="Language" object="{newLanguage}">
+                        <label class="text-center">Add a language to the available ones</label>
+                        <f:form.textfield property="title" id="titlelanguage" class="form-control" />
+                        <f:form.submit id="addlanguage" value="Save" class="btn btn-primary pull-right" />
+                    </f:form>
+                </div>
+            </div>
+            <div class="box">
+                <h4 class="text-center color-bleu-fa"><i class="fa fa-code"></i> Skills</h4>
+                <div id="theskills">
+                    <f:for each="{skills}" as="skill">
+                        <div class="col-sm-6 ">{skill.title}</div>
+                    </f:for>
+                </div>
+                <div class="col-md-12">
+                    <f:form id="newLSkillForm" name="newSkill" action="add" controller="Skill" object="{newSkill}" method="post">
+                        <label class="text-center">Add a skill to the available ones</label>
+                        <f:form.textfield property="title" id="titleskill" class="form-control" />
+                        <f:form.submit id="addskill" value="Save" class="btn btn-primary pull-right" />
+                    </f:form>
+                </div>
+            </div>
+        </div>
+    </aside>
+</html>
